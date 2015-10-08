@@ -27,7 +27,7 @@ teeJotain()
 ```
 Funktiokutsu koostuu funktion nimestä, jota seuraavat sulut, jotka sisältävät funktion _argumentit_. Argumentit ovat ne arvot, jotka "menevät funktion sisään".
 
-Funktion määrittely alkaa aina avainsanalla `func`. Sitten tulee funktion nimi, sitten sulut ja sitten paluuarvon tyyppi. Sulkujen sisään tulevat nimet argumenteille tyyppien kera.
+Funktion määrittely alkaa aina avainsanalla `func`. Sitten tulee funktion nimi, sitten sulut ja sitten paluuarvon [_tyyppi_](tyypit.md). Sulkujen sisään tulevat nimet argumenteille tyyppien kera.
 
 ```Go
 func teeJotain() {
