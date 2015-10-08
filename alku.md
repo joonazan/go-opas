@@ -38,4 +38,11 @@ package main
 `package` kertoo minkä nimiseen pakettiin tiedosto kuuluu. Jos paketin nimi on `main`, se on ohjelma, jos nimi on mikä tahansa muu, pakettia ei voi ajaa. Joka tiedoston alussa on oltava pakettimäärittely.
 
 ## Mitä värit tarkoittavat?
-Koodilaatikoiden ulkopuolella olevat siniset sanat ovat linkkejä; käytä niitä saadaksesi lisää tietoa sanasta. Laatikoiden sisällä samanlaiset sanat sanat näkyvät samalla värillä.
+Koodilaatikoiden ulkopuolella olevat siniset sanat ovat linkkejä; käytä niitä saadaksesi lisää tietoa sanasta.
+
+Laatikoiden sisällä samanlaiset sanat sanat näkyvät samalla värillä. Värityksen tarkoitus on helpottaa koodin lukemista.
+
+- `package`, `import` ja `func` ovat _avainsanoja_, joilla on aina tietty merkitys.
+- `"fmt"` ja `"Hello, world!"` ovat _merkkijonoja_.
+- koodissa nähty `main` on funktion nimi funktion määrittelyssä
+- koodissa nähty `Println` on funktion nimi funktiokutsussa
