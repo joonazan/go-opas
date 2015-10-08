@@ -6,6 +6,8 @@ Nykyään ohjelmia tehdään kirjoittamalla _lähdekoodia_ jollain ohjelmointiki
 ## Hello, world!
 Ohjelmointi on perinteistä aloittaa ohjelmalla, joka _tulostaa_ `Hello, world!`. Tulostaminen tarkoittaa tekstin ulos antamista, niin että se voidaan näyttää komentorivillä tai tallentaa tiedostoon. Nykyään voi elää näkemättä koskaan komentoriviä(ja ne joita nykyään näkee ovat [virtuaalisia](https://en.wikipedia.org/wiki/Virtual_console)), mutta ohjelmoijalle tulostaminen on yhä helpoin tapa viestiä ohjelmalla ulkomaailmalle.
 
+Nyt on hyvä vaihe tarkistaa, että osaat [ajaa koodia](setup.md). Kokeile ajaa annettu ohjelma.
+
 ```Go
 package main
 
