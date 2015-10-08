@@ -26,7 +26,7 @@ func main() {
 	fmt.Println("Hello, world!")
 }
 ```
-`Println` on _funktio_, joka saa ohjelman _tulostamaan_ jotain. Se _määritellään_ kirjastossa `fmt`. Sitä _kutsutaan_ _merkkijonolla_ `Hello, world!`.
+`Println` on _funktio_, joka saa ohjelman _tulostamaan_ jotain. Se määritellään _kirjastossa_ `fmt`. Sitä _kutsutaan_ _merkkijonolla_ `Hello, world!`.
 
 `main` on funktio, jota kutsutaan automaattisesti kun ohjelma käynnistetään.
 
@@ -38,6 +38,6 @@ import "fmt"
 ```Go
 package main
 ```
-Go:ssa jokaisen lähdekooditiedoston alussa on kerrottava minkä nimiseen pakettiin tiedosto kuuluu. Jos paketti on `main`, se on ohjelma, jos nimi on mikä tahansa muu, kyseessä on _kirjasto_.
+Go:ssa jokaisen lähdekooditiedoston alussa on kerrottava minkä nimiseen pakettiin tiedosto kuuluu. Jos paketti on `main`, se on ohjelma, jos nimi on mikä tahansa muu, kyseessä on kirjasto.
 
 ## Mitä värit tarkoittavat?
