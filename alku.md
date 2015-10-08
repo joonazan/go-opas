@@ -38,3 +38,4 @@ package main
 `package` kertoo minkä nimiseen pakettiin tiedosto kuuluu. Jos paketin nimi on `main`, se on ohjelma, jos nimi on mikä tahansa muu, pakettia ei voi ajaa. Joka tiedoston alussa on oltava pakettimäärittely.
 
 ## Mitä värit tarkoittavat?
+Koodilaatikoiden ulkopuolella olevat siniset sanat ovat linkkejä; käytä niitä saadaksesi lisää tietoa sanasta. Laatikoiden sisällä samanlaiset sanat sanat näkyvät samalla värillä.
