@@ -23,7 +23,7 @@ func main() {
 	fmt.Println("Hello, world!")
 }
 ```
-[`Println`](https://golang.org/pkg/fmt/#Println) on _funktio_, joka saa ohjelman tulostamaan jotain. Se määritellään _paketissa_ [fmt](https://golang.org/pkg/fmt/). Sitä _kutsutaan_ _merkkijonolla_ `Hello, world!`.
+[`Println`](https://golang.org/pkg/fmt/#Println) on [_funktio_](funktio.md), joka saa ohjelman tulostamaan jotain. Se määritellään _paketissa_ [fmt](https://golang.org/pkg/fmt/). Sitä _kutsutaan_ _merkkijonolla_ `Hello, world!`.
 
 `main` on funktio, jota kutsutaan automaattisesti kun ohjelma käynnistetään.
 
