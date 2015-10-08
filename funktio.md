@@ -17,7 +17,7 @@
 >
 > – _minä, ohjelmoinnin opettaja_
 
-Funktio voi olla tuttu sana matematiikasta. Funktio ohjelmoinnissa on kuitenkin yhtä aikaa yksinkertaisempi ja mahtavampi. Matematiikan funktioita kutsutaan ohjelmoinnissa _puhtaiksi funktioiksi_. Mitä `Println` olisi matematiikassa?
+Matematiikan funktiota kutsutaan ohjelmoinnissa _puhtaaksi funktioksi_. Funktio ohjelmoinnissa on puhdasta funktiota yksinkertaisempi ja mahtavampi. Mitä `Println` olisi matematiikassa?
 
 Funktion nimi esiintyy kahdessa eri asiayhteydessä: funktiota voi _kutsua_, mutta sitä ennen se pitää olla _määritelty_. Tässä on hieman funktiokutsuja.
 ```Go
