@@ -30,7 +30,7 @@ rune        alias for int32
 
 string      merkkijono
 ```
-On olemassa melko monimutkaisia tyyppejä.
+On olemassa melko monimutkaisia tyyppejä:
 ```Go
 package main
 
