@@ -27,3 +27,8 @@ teeJotain()
 ```
 Funktiokutsu koostuu funktion nimestä, jota seuraavat sulut, jotka sisältävät funktion _argumentit_. Argumentit ovat ne arvot, jotka "menevät funktion sisään".
 
+```Go
+func teeJotain() {
+	teeSitä()
+	teeTätä()
+}
