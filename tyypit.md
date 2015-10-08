@@ -2,7 +2,9 @@
 
 Kaikki "esineet" ohjelmoinnissa ovat arvoja. `"Hello, world!"` on arvo. `fmt.Println` on arvo. `3` on arvo. `func` ei ole arvo. Eikä `package`. Edes `fmt` ei ole arvo. (Mutta `"fmt"` on.)
 
-Kuitenkaan kaikki arvot eivät ole samanlaisia. Mitä on `"Hello, world!" + 3`? Entä `3 + fmt.Println`? Jokaisella arvolla on tyyppi. Kaikki tyypit rakentuvat yksinkertaisista tyypeistä.
+Kuitenkaan kaikki arvot eivät ole samanlaisia. Mitä on `"Hello, world!" + 3`? Entä `3 + fmt.Println`? Jokaisella arvolla on tyyppi.
+
+Kaikki tyypit rakentuvat yksinkertaisista tyypeistä.
 
 ```Go
 bool        true (tosi) tai false (epätosi)
@@ -28,3 +30,14 @@ rune        alias for int32
 
 string      merkkijono
 ```
+
+```Go
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Printf("%T", fmt.Println)
+}
+```
+tulostaa: `func(...interface {}) (int, error)`
