@@ -7,13 +7,16 @@
 >
 > – _peruskoulun matematiikan opettaja_
 
+
 > Funktio on kuvaus joukosta toiseen.
 >
 > – _yliopiston matematiikan opettaja_
 
+
 > Funktio tekee jotain.
 >
 > – _ohjelmoija_
+
 Go:ssa funktio on kuitenkin hieman erilainen; on jopa mahdollista tehdä funktio, joka ei ota mitään arvoja eikä palauta mitään. Paremmin kuin "funktio on kuvaus joukosta A joukkoon B", funktiota kuvaa "funktio tekee jotain".
 
 
