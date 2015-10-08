@@ -5,7 +5,7 @@ Kaikki "esineet" ohjelmoinnissa ovat arvoja. `"Hello, world!"` on arvo. `fmt.Pri
 Kuitenkaan kaikki arvot eivät ole samanlaisia. Mitä on `"Hello, world!" + 3`? Entä `3 + fmt.Println`? Jokaisella arvolla on tyyppi. Kaikki tyypit rakentuvat yksinkertaisista tyypeistä.
 
 ```Go
-bool        true(tosi) tai false(epätosi)
+bool        true (tosi) tai false (epätosi)
 
 uint8       the set of all unsigned  8-bit integers (0 to 255)
 uint16      the set of all unsigned 16-bit integers (0 to 65535)
