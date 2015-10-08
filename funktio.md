@@ -17,10 +17,7 @@
 >
 > – _minä, ohjelmoinnin opettaja_
 
-Go:ssa funktio on kuitenkin hieman erilainen; on jopa mahdollista tehdä funktio, joka ei ota mitään arvoja eikä palauta mitään. Paremmin kuin "funktio on kuvaus joukosta A joukkoon B", funktiota kuvaa "funktio tekee jotain".
-
-
-
+Funktion nimi esiintyy kahdessa eri asiayhteydessä: funktiota voi _kutsua_, mutta sitä ennen se pitää olla _määritelty_. Tässä on hieman funktiokutsuja.
 ```Go
 kuutiojuuri(luku)
 funktio(argumentti1, argumentti2, argumentti3)
