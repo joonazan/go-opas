@@ -6,13 +6,11 @@
 > Funktio on kone jonne laitetaan jotain sisään ja jotain tulee ulos.
 >
 > – _peruskoulun matematiikan opettaja_
-
-
+<!-- -->
 > Funktio on kuvaus joukosta toiseen.
 >
 > – _yliopiston matematiikan opettaja_
-
-
+<!-- -->
 > Funktio tekee jotain.
 >
 > – _ohjelmoija_
