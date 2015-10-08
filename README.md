@@ -38,6 +38,6 @@ import "fmt"
 ```Go
 package main
 ```
-Go:ssa jokaisen lähdekooditiedoston alussa on kerrottava minkä nimiseen pakettiin tiedosto kuuluu. Jos paketti on `main`, se on ohjelma, jos nimi on mikä tahansa muu, pakettia ei voi ajaa.
+`package` kertoo minkä nimiseen pakettiin tiedosto kuuluu. Jos paketin nimi on `main`, se on ohjelma, jos nimi on mikä tahansa muu, pakettia ei voi ajaa. Joka tiedoston alussa on oltava pakettimäärittely.
 
 ## Mitä värit tarkoittavat?
