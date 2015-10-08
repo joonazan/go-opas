@@ -40,4 +40,4 @@ func main() {
 	fmt.Printf("%T", fmt.Println)
 }
 ```
-tulostaa: ```Gofunc(...interface {}) (int, error)```
+tulostaa: ```Go func(...interface {}) (int, error)```
