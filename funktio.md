@@ -29,6 +29,6 @@ Funktiokutsu koostuu funktion nimestä, jota seuraavat sulut, jotka sisältävä
 
 ```Go
 func teeJotain() {
-	teeSitä()
-	teeTätä()
+	teeKoira()
+	teeKissa()
 }
