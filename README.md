@@ -33,7 +33,7 @@ func main() {
 ```Go
 import "fmt"
 ```
-[import](import.md) ottaa käyttöön paketin.
+[`import`](import.md) ottaa käyttöön paketin.
 
 ```Go
 package main
