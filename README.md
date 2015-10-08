@@ -33,7 +33,7 @@ func main() {
 ```Go
 import "fmt"
 ```
-`import` ottaa käyttöön kirjaston. Esim. `import "github.com/joonazan/vec2"`
+[import]("import.md") ottaa käyttöön kirjaston.
 
 ```Go
 package main
