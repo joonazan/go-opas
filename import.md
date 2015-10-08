@@ -6,11 +6,13 @@ Go:n mukana tulevien pakettien käyttämiseen riittää pelkkä paketin nimi
 ```Go
 import "math"
 ```
-Go etsii muut paketit Go-kansiosta. Esimerkiksi minulla on kopio kirjastosta _vec2_ kansiossa `/home/joonazan/go/src/github.com/joonazan/vec2`. Kirjaston polku voi samalla olla myös URL, josta sen saa. Paketin ja kaikki sen vaatimat paketit saa ladattua komennolla `go get`. Esim. `go get "github.com/joonazan/vec2"`.
+Go etsii muut paketit Go-kansiosta. Esimerkiksi minulla on kopio kirjastosta _vec2_ kansiossa `/home/joonazan/go/src/github.com/joonazan/vec2`.
 ```Go
 import "math/rand"
 import "github.com/joonazan/vec2"
 ```
+Kirjaston polku voi samalla olla myös URL, josta sen saa. Paketin ja kaikki sen vaatimat paketit saa ladattua komennolla `go get`. Esim. `go get "github.com/joonazan/vec2"`.
+
 Monen asian importtaaminen ei vaadi importin moneen kertaan kirjoittamista.
 ```Go
 import (
