@@ -42,4 +42,5 @@ func main() {
 ```
 tulostaa:
 ```Go
-func(...interface {}) (int, error)```
+func(...interface {}) (int, error)
+```
