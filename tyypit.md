@@ -6,7 +6,7 @@ Kuitenkaan kaikki arvot eivät ole samanlaisia. Mitä on `"Hello, world!" + 3`? 
 
 ```Go
 bool        true (tosi) tai false (epätosi)
-true
+
 uint8       the set of all unsigned  8-bit integers (0 to 255)
 uint16      the set of all unsigned 16-bit integers (0 to 65535)
 uint32      the set of all unsigned 32-bit integers (0 to 4294967295)
