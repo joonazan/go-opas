@@ -6,7 +6,7 @@ Go:n mukana tulevien pakettien käyttämiseen riittää pelkkä paketin nimi
 ```Go
 import "math"
 ```
-Go etsii muut paketit Go-kansiosta. Esimerkiksi minulla on kopio kirjastosta _vec2_ kansiossa `/home/joonazan/go/src/github.com/joonazan/vec2`.
+Go etsii muut paketit Go-kansiosta. Esimerkiksi minulla on kopio kirjastosta _vec2_ kansiossa `/home/joonazan/go/src/github.com/joonazan/vec2`, koska minun GOPATH on `/home/joonazan/go`.
 ```Go
 import "math/rand"
 import "github.com/joonazan/vec2"
