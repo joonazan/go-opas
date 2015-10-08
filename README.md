@@ -16,9 +16,9 @@ func main() {
 
 ```
 
-Tietokoneet osaavat _ajaa_ yksinkertaisista käskyistä koostuvia ohjelmia. Näitä käskyjä kutsutaan usein _konekieleksi_. Konekielisten käskyjen luetteleminen on kuitenkin niin työlästä ja vaikeaa, että jo 1950-luvulla luotiin ensimmäiset ohjelmointikielet.
+Tietokoneet osaavat _ajaa_ yksinkertaisista käskyistä koostuvia ohjelmia. Näitä käskyjä kutsutaan usein _konekieleksi_. Konekielisten käskyjen luetteleminen on kuitenkin niin työlästä ja vaikeaa, että jo 1950-luvulla luotiin ensimmäiset _ohjelmointikielet_.
 
-Nykyään ohjelmia tehdään _kirjoittamalla lähdekoodia_ jollain _ohjelmointikielellä_. Koodi voidaan muuttaa konekieleksi _kääntäjällä_ tai sitten voidaan ohjelmoida _tulkki_, joka tekee lähdekoodin kuvaamat asiat. Tähän oppaaseen on valittu kieli nimeltä *Go* sen yksinkertaisuuden ja hyödyllisyyden vuoksi.
+Nykyään ohjelmia tehdään kirjoittamalla _lähdekoodia_ jollain ohjelmointikielellä. Koodi voidaan muuttaa konekieleksi _kääntäjällä_ tai sitten voidaan ohjelmoida _tulkki_, joka tekee lähdekoodin kuvaamat asiat. Tähän oppaaseen on valittu kieli nimeltä *Go* sen yksinkertaisuuden ja hyödyllisyyden vuoksi.
 
 ## Miten esimerkkiohjelma toimii?
 ```Go
