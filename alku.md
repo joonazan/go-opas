@@ -45,5 +45,5 @@ Laatikoiden sisällä samanlaiset sanat sanat näkyvät samalla värillä. Väri
 - `package`, `import` ja `func` ovat _avainsanoja_, joilla on aina tietty merkitys.
 - `"fmt"` ja `"Hello, world!"` ovat _merkkijonoja_.
 - koodissa nähty
--- `main` on funktion nimi funktion määrittelyssä
--- `Println` on funktion nimi funktiokutsussa
+-	`main` on funktion nimi funktion määrittelyssä
+-	`Println` on funktion nimi funktiokutsussa
