@@ -33,7 +33,7 @@ func main() {
 ```Go
 import "fmt"
 ```
-`import` ottaa käyttöön kirjaston. `fmt` vaaditaan, koska ohjelma käyttää siinä määriteltyä funktiota `Println`.
+`import` ottaa käyttöön kirjaston. [fmt](https://golang.org/pkg/fmt/) vaaditaan, koska ohjelma käyttää siinä määriteltyä funktiota `Println`.
 
 ```Go
 package main
