@@ -8,8 +8,12 @@ Opas pyrkii olemaan kertomatta epäolennaisia yksityiskohtia heti, kuitenkaan op
 ## Jos olet jo aloittanut, valitse tästä seuraava aihe
 
 ### Go
-- Ohjausrakenteet
+- ohjausrakenteet
      - if
-         - else
+          - else
      - for
      - switch
+- funktiot
+     - funktiokutsu
+          - defer
+          - go
