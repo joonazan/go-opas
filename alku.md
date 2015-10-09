@@ -2,8 +2,8 @@
 Tietokoneet osaavat _ajaa_ yksinkertaisista käskyistä koostuvia ohjelmia. Näitä käskyjä kutsutaan usein _konekieleksi_. Konekielisten käskyjen luetteleminen on kuitenkin työlästä, eikä lopputulos edes aina tee sitä mitä sen piti! Siksi jo 1950-luvulla luotiin ensimmäiset _ohjelmointikielet_.
 
 ```
-            |     konekieli             merkintöjä joiden on tarkoitus tehdä siitä helppolukuista
-----------------------------------------------------------------------------------------------
+                |konekieli             merkintöjä joiden on tarkoitus tehdä siitä helppolukuista
+----------------|-----------------------------------------------------------------------------
   42cb30:	|64 48 8b 0c 25 f8 ff 	mov    rcx,QWORD PTR fs:0xfffffffffffffff8
   42cb37:	|ff ff 
   42cb39:	|48 8d 44 24 c8       	lea    rax,[rsp-0x38]
