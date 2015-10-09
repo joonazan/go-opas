@@ -16,7 +16,7 @@ Tietokoneet osaavat _ajaa_ yksinkertaisista käskyistä koostuvia ohjelmia. Näi
   42cb66:	00 
   42cb67:	31 ed                	xor    ebp,ebp
 ```
-_Konekieltä. Komennot ovat keskimmäisessä sarakkeessa. Oikealla olevien sanojen on tarkoitus helpottaa niiden ymmärtämistä._
+_Konekieltä. Komennot ovat toisessa sarakkeessa. Oikealla olevien sanojen on tarkoitus helpottaa niiden ymmärtämistä._
 
 Nykyään ohjelmia tehdään kirjoittamalla _lähdekoodia_ jollain ohjelmointikielellä. Koodi voidaan muuttaa konekieleksi _kääntäjällä_ tai sitten voidaan käyttää _tulkkia_, joka tekee lähdekoodin kuvaamat asiat. Tähän oppaaseen on valittu kieli nimeltä __Go__, koska se on yksinkertainen, sillä on vaikea tehdä vahingossa muuta kuin mitä halusi tehdä ja sillä ohjelmointi on niin miellyttävää, että monet käyttävät sitä.
 
