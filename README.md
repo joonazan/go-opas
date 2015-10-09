@@ -9,7 +9,7 @@ Opas pyrkii olemaan kertomatta epäolennaisia yksityiskohtia heti, kuitenkaan op
 
 ### Go
 - Ohjausrakenteet
- - if
-  - else
- - for
- - switch
+     - if
+         - else
+     - for
+     - switch
