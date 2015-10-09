@@ -1,7 +1,7 @@
 # Alku
 Tietokoneet osaavat _ajaa_ yksinkertaisista käskyistä koostuvia ohjelmia. Näitä käskyjä kutsutaan usein _konekieleksi_. Konekielisten käskyjen luetteleminen on kuitenkin työlästä, eikä lopputulos edes aina tee sitä mitä sen piti! Siksi jo 1950-luvulla luotiin ensimmäiset _ohjelmointikielet_.
 
-```
+
                 |konekieli             merkintöjä joiden on tarkoitus tehdä siitä helppolukuista
 ----------------|-----------------------------------------------------------------------------
   42cb30:	|64 48 8b 0c 25 f8 ff 	mov    rcx,QWORD PTR fs:0xfffffffffffffff8
@@ -22,7 +22,7 @@ Tietokoneet osaavat _ajaa_ yksinkertaisista käskyistä koostuvia ohjelmia. Näi
   42cb6e:	|80 bc 24 d8 00 00 00 	cmp    BYTE PTR [rsp+0xd8],0x0
   42cb75:	|00 
   42cb76:	|75 08                	jne    42cb80 <runtime.chanrecv+0x50>
-```
+
 
 Nykyään ohjelmia tehdään kirjoittamalla _lähdekoodia_ jollain ohjelmointikielellä. Koodi voidaan muuttaa konekieleksi _kääntäjällä_ tai sitten voidaan käyttää _tulkkia_, joka tekee lähdekoodin kuvaamat asiat. Tähän oppaaseen on valittu kieli nimeltä __Go__, koska se on yksinkertainen, sillä on vaikea tehdä vahingossa muuta kuin mitä halusi tehdä ja sillä ohjelmointi on niin miellyttävää, että monet käyttävät sitä.
 
