@@ -33,7 +33,7 @@ Tietokoneet osaavat _ajaa_ yksinkertaisista käskyistä koostuvia ohjelmia. Näi
   42cba6:	c6 44 24 20 10       	mov    BYTE PTR [rsp+0x20],0x10
   42cbab:	48 c7 44 24 28 02 00 	mov    QWORD PTR [rsp+0x28],0x2
 ```
-_Konekieltä. Komennot ovat keskimmäisessä sarakkeessa. Oikealla olevien sanojen on tarkoitus helpottaa niiden ymmärtämistä.
+_Konekieltä. Komennot ovat keskimmäisessä sarakkeessa. Oikealla olevien sanojen on tarkoitus helpottaa niiden ymmärtämistä._
 
 Nykyään ohjelmia tehdään kirjoittamalla _lähdekoodia_ jollain ohjelmointikielellä. Koodi voidaan muuttaa konekieleksi _kääntäjällä_ tai sitten voidaan käyttää _tulkkia_, joka tekee lähdekoodin kuvaamat asiat. Tähän oppaaseen on valittu kieli nimeltä __Go__, koska se on yksinkertainen, sillä on vaikea tehdä vahingossa muuta kuin mitä halusi tehdä ja sillä ohjelmointi on niin miellyttävää, että monet käyttävät sitä.
 
