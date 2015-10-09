@@ -68,4 +68,4 @@ Laatikoiden sisällä samanlaiset sanat sanat näkyvät samalla värillä. Väri
  - `Println` on funktion nimi funktiokutsussa
 
 ## Miten edetä tästä
-Etusivulla on kaavio, josta voi valita mitä opiskelee seuraavaksi.
+[Etusivulla](README.md) on kaavio, josta voi valita mitä opiskelee seuraavaksi.
