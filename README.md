@@ -12,8 +12,28 @@ Opas pyrkii olemaan kertomatta epäolennaisia yksityiskohtia heti, kuitenkaan op
      - if
           - else
      - for
+          - break
+          - continue
+          - range for
      - switch
-- funktiot
+          - fallthrough
+     - select
+     - goto
+- funktio
+     - metodi
+          - rajapinta
      - funktiokutsu
           - defer
           - go
+     - funktion määrittely
+          - funktioliteraalit
+          - variadiset funktiot
+- tietorakenteet
+     - vakio
+          - iota
+     - muuttuja
+          - osoitin
+          - struct
+     - slice
+          - array
+          - map
