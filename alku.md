@@ -66,3 +66,6 @@ Laatikoiden sisällä samanlaiset sanat sanat näkyvät samalla värillä. Väri
 - koodissa nähty
  - `main` on funktion nimi funktion määrittelyssä
  - `Println` on funktion nimi funktiokutsussa
+
+## Miten edetä tästä
+Etusivulla on kaavio, josta voi valita mitä opiskelee seuraavaksi.
