@@ -3,6 +3,7 @@ Tietokoneet osaavat _ajaa_ yksinkertaisista käskyistä koostuvia ohjelmia. Näi
 
 ```
             |     konekieli             merkintöjä joiden on tarkoitus tehdä siitä helppolukuista
+----------------------------------------------------------------------------------------------
   42cb30:	|64 48 8b 0c 25 f8 ff 	mov    rcx,QWORD PTR fs:0xfffffffffffffff8
   42cb37:	|ff ff 
   42cb39:	|48 8d 44 24 c8       	lea    rax,[rsp-0x38]
