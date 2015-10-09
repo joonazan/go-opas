@@ -15,23 +15,6 @@ Tietokoneet osaavat _ajaa_ yksinkertaisista käskyistä koostuvia ohjelmia. Näi
   42cb5f:	c6 84 24 e0 00 00 00 	mov    BYTE PTR [rsp+0xe0],0x0
   42cb66:	00 
   42cb67:	31 ed                	xor    ebp,ebp
-  42cb69:	48 39 e9             	cmp    rcx,rbp
-  42cb6c:	75 6c                	jne    42cbda <runtime.chanrecv+0xaa>
-  42cb6e:	80 bc 24 d8 00 00 00 	cmp    BYTE PTR [rsp+0xd8],0x0
-  42cb75:	00 
-  42cb76:	75 08                	jne    42cb80 <runtime.chanrecv+0x50>
-  42cb78:	48 81 c4 b8 00 00 00 	add    rsp,0xb8
-  42cb7f:	c3                   	ret    
-  42cb80:	48 c7 04 24 00 00 00 	mov    QWORD PTR [rsp],0x0
-  42cb87:	00 
-  42cb88:	48 c7 44 24 08 00 00 	mov    QWORD PTR [rsp+0x8],0x0
-  42cb8f:	00 00 
-  42cb91:	48 8d 1d 68 7c 1a 00 	lea    rbx,[rip+0x1a7c68]        # 5d4800 <go.string.*+0x22760>
-  42cb98:	48 89 5c 24 10       	mov    QWORD PTR [rsp+0x10],rbx
-  42cb9d:	48 c7 44 24 18 17 00 	mov    QWORD PTR [rsp+0x18],0x17
-  42cba4:	00 00 
-  42cba6:	c6 44 24 20 10       	mov    BYTE PTR [rsp+0x20],0x10
-  42cbab:	48 c7 44 24 28 02 00 	mov    QWORD PTR [rsp+0x28],0x2
 ```
 _Konekieltä. Komennot ovat keskimmäisessä sarakkeessa. Oikealla olevien sanojen on tarkoitus helpottaa niiden ymmärtämistä._
 
