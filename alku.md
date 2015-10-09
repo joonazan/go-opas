@@ -21,7 +21,7 @@ _Konekieltä. Komennot ovat keskimmäisessä sarakkeessa. Oikealla olevien sanoj
 Nykyään ohjelmia tehdään kirjoittamalla _lähdekoodia_ jollain ohjelmointikielellä. Koodi voidaan muuttaa konekieleksi _kääntäjällä_ tai sitten voidaan käyttää _tulkkia_, joka tekee lähdekoodin kuvaamat asiat. Tähän oppaaseen on valittu kieli nimeltä __Go__, koska se on yksinkertainen, sillä on vaikea tehdä vahingossa muuta kuin mitä halusi tehdä ja sillä ohjelmointi on niin miellyttävää, että monet käyttävät sitä.
 
 ## Hello, world!
-Ohjelmointi on perinteistä aloittaa ohjelmalla, joka _tulostaa_ `Hello, world!`. Tulostaminen tarkoittaa tekstin ulos antamista, niin että se voidaan näyttää komentorivillä tai tallentaa tiedostoon. Nykyään voi elää näkemättä koskaan komentoriviä(ja ne joita nykyään näkee ovat [virtuaalisia](https://en.wikipedia.org/wiki/Virtual_console)), mutta ohjelmoijalle tulostaminen on yhä helpoin tapa viestiä ohjelmalla ulkomaailmalle.
+Ohjelmointi on perinteistä aloittaa ohjelmalla, joka _tulostaa_ `Hello, world!`. Tulostaminen tarkoittaa tekstin ulos antamista, niin että se voidaan näyttää komentorivillä tai tallentaa tiedostoon. Nykyään voi elää näkemättä koskaan komentoriviä(ja ne joita nykyään näkee ovat [virtuaalisia](https://en.wikipedia.org/wiki/Virtual_console)), mutta ohjelmoijalle tulostaminen on yhä helpoin tapa viestiä ohjelmalla ulkomaailmalle ohjelman sisuksista.
 
 Nyt on hyvä vaihe tarkistaa, että pystyt [ajamaan koodia](setup.md). Kokeile ajaa annettu ohjelma.
 
