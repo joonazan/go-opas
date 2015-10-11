@@ -19,10 +19,40 @@
 
 Matematiikan funktiota kutsutaan ohjelmoinnissa _puhtaaksi funktioksi_. Funktio ohjelmoinnissa on puhdasta funktiota yksinkertaisempi ja mahtavampi. Mitä `Println` olisi matematiikassa?
 
-Funktion nimi esiintyy kahdessa eri asiayhteydessä: funktiota voi _kutsua_, mutta sitä ennen se pitää olla [_määritelty_](func.go). Tässä on hieman funktiokutsuja.
+Funktion saa tekemään asioita _kutsumalla_ sitä, mutta sitä ennen se pitää olla [_määritelty_](func.go).
+
+Funktiokutsu koostuu funktion nimestä, jota seuraavat sulut, jotka sisältävät funktion _argumentit_. Argumentit ovat ne arvot, jotka "menevät funktion sisään".
+
 ```Go
+// Pitäisi tehdä joku järkevä funktiokutsuja demoava ohjelma
 kuutiojuuri(luku)
 funktio(argumentti1, argumentti2, argumentti3)
 teeJotain()
 ```
-Funktiokutsu koostuu funktion nimestä, jota seuraavat sulut, jotka sisältävät funktion _argumentit_. Argumentit ovat ne arvot, jotka "menevät funktion sisään".
+
+Kun osaat funktioiden perusteet, voit siirtyä opiskelemaan metodeja.
+
+Toisaalta voit myös tutkia rekursiota, eli funktioita, jotka kutsuvat itseään. (Tai sellaisia, jotka kutsuvat toista, joka kutsuu taas ensimmäistä. jne.) Tässä esimerkissä on myös funktio argumenttina!
+
+```Go
+package main
+
+import "fmt"
+
+func main() {
+    kutsuLuvuilla(10, tulostaLuku)
+}
+
+func kutsuLuvuilla(asti uint, f func(uint)) {
+
+    if asti == 0 {
+        return
+    }
+
+    kutsuLuvuilla(asti-1, f)
+
+    f(asti)
+}
+
+func tulostaLuku(x uint) { fmt.Println(x) }
+```
