@@ -1,36 +1,36 @@
 # Tyypit
 
-Kaikki "esineet" ohjelmoinnissa ovat arvoja. `"Hello, world!"` on arvo. `fmt.Println` on arvo. `3` on arvo. `func` ei ole arvo. Eikä `package`. Edes `fmt` ei ole arvo. (Mutta `"fmt"` on.)
+Kaikilla arvoilla on tyyppi.
 
-Kuitenkaan kaikki arvot eivät ole samanlaisia. Mitä on `"Hello, world!" + 3`? Entä `3 + fmt.Println`? Jokaisella arvolla on tyyppi.
+Kuitenkaan kaikki arvot eivät ole samanlaisia. Mitä on `"Hello, world!" + 3`? Entä `3 + fmt.Println`?
 
 Kaikki tyypit rakentuvat yksinkertaisista tyypeistä.
 
 ```Go
-bool        true (tosi) tai false (epätosi)
+bool        sisältää arvon true (tosi) tai false (epätosi)
 
-uint8       the set of all unsigned  8-bit integers (0 to 255)
-uint16      the set of all unsigned 16-bit integers (0 to 65535)
-uint32      the set of all unsigned 32-bit integers (0 to 4294967295)
-uint64      the set of all unsigned 64-bit integers (0 to 18446744073709551615)
+uint8       etumerkitön  8-bittinen kokonaisluku (0:sta 255:teen)
+uint16      etumerkitön 16-bittinen kokonaisluku (0:sta 65535:teen)
+uint32      etumerkitön 32-bittinen kokonaisluku (0:sta 4294967295:teen)
+uint64      etumerkitön 64-bittinen kokonaisluku (0:sta 18446744073709551615:teen)
 
-int8        the set of all signed  8-bit integers (-128 to 127)
-int16       the set of all signed 16-bit integers (-32768 to 32767)
-int32       the set of all signed 32-bit integers (-2147483648 to 2147483647)
-int64       the set of all signed 64-bit integers (-9223372036854775808 to 9223372036854775807)
+int8        etumerkillinen  8-bittinen kokonaisluku (-128:sta 127:teen)
+int16       etumerkillinen 16-bittinen kokonaisluku (-32768:sta 32767:teen)
+int32       etumerkillinen 32-bittinen kokonaisluku (-2147483648:sta 2147483647:teen)
+int64       etumerkillinen 64-bittinen kokonaisluku (-9223372036854775808:sta 9223372036854775807:teen)
 
-float32     the set of all IEEE-754 32-bit floating-point numbers
-float64     the set of all IEEE-754 64-bit floating-point numbers
+float32     IEEE-754 -standardin mukainen 32-bittinen liukuluku
+float64     IEEE-754 -standardin mukainen 64-bittinen liukuluku
 
-complex64   the set of all complex numbers with float32 real and imaginary parts
-complex128  the set of all complex numbers with float64 real and imaginary parts
+complex64   kompleksiluku, jonka reaali- ja imaginaariosat ovat typpiä float32
+complex128  kompleksiluku, jonka reaali- ja imaginaariosat ovat typpiä float64
 
-byte        alias for uint8
-rune        alias for int32
+byte        toinen nimi uint8:lle
+rune        toinen nimi int32:lle; voidaan käyttää yhden merkin varastoimiseen
 
-string      merkkijono
+string      merkkijono, eli tekstiä
 ```
-On olemassa melko monimutkaisia tyyppejä:
+Tulostamalla asioita `%T`-formatoinnilla, voimme tutkia arvojen tyyppejä. On olemassa melko monimutkaisia tyyppejä:
 ```Go
 package main
 
