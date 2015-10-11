@@ -8,32 +8,4 @@ Opas pyrkii olemaan kertomatta epäolennaisia yksityiskohtia heti, kuitenkaan op
 ## Jos olet jo aloittanut, valitse tästä seuraava aihe
 
 ### Go
-- ohjausrakenteet
-     - if
-          - else
-     - for
-          - break
-          - continue
-          - range for
-     - switch
-          - fallthrough
-     - select
-     - goto
-- funktio
-     - metodi
-          - rajapinta
-     - funktiokutsu
-          - defer
-          - go
-     - funktion määrittely
-          - funktioliteraalit
-          - variadiset funktiot
-- tietorakenteet
-     - vakio
-          - iota
-     - muuttuja
-          - osoitin
-          - struct
-     - slice
-          - array
-          - map
+![kaikki Go:n perusominaisuudet](index.png)
