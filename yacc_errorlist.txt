@@ -1,0 +1,65 @@
+from go.y 11.10.2015
+
+unexpected comma during import block
+missing import path; require quoted string
+missing { after if clause
+missing { after switch clause
+missing { after for clause
+missing { after for clause
+unexpected semicolon or newline before {
+unexpected semicolon or newline in type declaration
+unexpected } in channel type
+unexpected ) in channel type
+unexpected comma in channel type
+unexpected semicolon or newline before else
+name list not allowed in interface type
+var declaration not allowed in for initializer
+unexpected { at end of statement
+unexpected { at end of statement
+argument to go/defer must be function call
+need trailing comma before newline in composite literal
+need trailing comma before newline in composite literal
+nested func not allowed
+else must be followed by if or statement block
+package statement must be first
+cannot import package as init - init must be a func
+conflicting names %s and %s for package %q", importpkg.Name, $2.Name, importpkg.Path
+
+cannot import unsafe package %q", importpkg.Path
+
+empty top-level declaration
+non-declaration statement outside function body
+expr.(type) must be alone in list
+argument count mismatch: %d = %d", count($1), 1
+
+invalid variable name %s in type switch", $1.N
+
+missing statement after label
+cannot declare in the for-increment
+missing condition in if statement
+missing condition in if statement
+the bitwise complement operator is ^
+middle index required in 3-index slice
+final index required in 3-index slice
+cannot parenthesize type in composite literal
+final argument in variadic function missing type
+can only use //go:noescape with external func implementations
+func init must have no arguments and no return values
+func main must have no arguments and no return values
+method has no receiver
+method has multiple receivers
+bad receiver in method
+inconsistent definition for func %v during import\n\t%v\n\t%v", s, s.Def.Type, t
+
+cannot parenthesize embedded type
+cannot parenthesize embedded type
+cannot parenthesize embedded type
+%v is not a package", $1
+
+cannot parenthesize embedded type
+%s is shadowed during return", l.N.Sym.Name
+
+%s is not a type", $1.Name
+
+bad negated constant
+bad constant %v", $$.Sym
