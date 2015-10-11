@@ -6,7 +6,7 @@ Kuitenkaan kaikki arvot eivät ole samanlaisia. Mitä on `"Hello, world!" + 3`? 
 
 Kaikki tyypit rakentuvat yksinkertaisista tyypeistä.
 
-```Go
+```
 bool        sisältää arvon true (tosi) tai false (epätosi)
 
 uint8       etumerkitön  8-bittinen kokonaisluku (0:sta 255:teen)
