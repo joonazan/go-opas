@@ -9,3 +9,5 @@ Opas pyrkii olemaan kertomatta epäolennaisia yksityiskohtia heti, kuitenkaan op
 
 ### Go
 ![kaikki Go:n perusominaisuudet](index.png)
+
+Nuoli on vaatimus. Esim. elseä ei voi opetella ennen iffiä. Asiaa, josta lähtee katkoviiva ei tarvitse osata, mutta uudella asialla ei välttämättä tee mitään ilman sitä.
