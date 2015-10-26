@@ -9,7 +9,7 @@ func main() {
 	closedgl.Run(draw, 640, 640, "Kaksi viivaa")
 }
 
-func draw(dt float64) {
+func draw(aika float64) {
 
 	gl.Begin(gl.LINES)
 
