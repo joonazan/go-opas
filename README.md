@@ -5,9 +5,12 @@ Opas pyrkii olemaan kertomatta epäolennaisia yksityiskohtia heti, kuitenkaan op
 
 ##[Aloita ohjelmoinnin opiskelu!](ohjeet/alku.md)
 
-## Jos olet jo aloittanut, valitse tästä seuraava aihe
+## Jos olet jo aloittanut, valitse tästä seuraava tehtävä
+
+[Hello, world!](tehtävät/helloworld.md)
+[Viivojen piirtäminen](tehtävät/viivat.md)
 
 ### Go
 ![kaikki Go:n perusominaisuudet](index.png)
 
-Nuoli on vaatimus. Esim. elseä ei voi opetella ennen iffiä. Asiaa, josta lähtee katkoviiva ei tarvitse osata, mutta uudella asialla ei välttämättä tee mitään ilman sitä.
+Nuoli on vaatimus. Esim. `else`ä ei voi opetella ennen `if`iä. Asiaa, josta lähtee katkoviiva ei tarvitse osata, mutta uudella asialla ei välttämättä tee mitään ilman sitä.

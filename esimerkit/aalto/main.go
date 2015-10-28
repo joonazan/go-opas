@@ -7,10 +7,10 @@ import (
 )
 
 func main() {
-	closedgl.Run(draw, 640, 640, "Animoitu siniaalto")
+	closedgl.Run(piirrä, 640, 640, "Animoitu siniaalto")
 }
 
-func draw(aika float64) {
+func piirrä(aika float64) {
 
 	const pisteitä = 200
 
