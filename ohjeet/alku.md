@@ -21,7 +21,7 @@ _Konekieltä. Komennot ovat toisessa sarakkeessa. Oikealla olevien sanojen on ta
 Nykyään ohjelmia tehdään kirjoittamalla _lähdekoodia_ jollain ohjelmointikielellä. Koodi voidaan muuttaa konekieleksi _kääntäjällä_ tai sitten voidaan käyttää _tulkkia_, joka tekee lähdekoodin kuvaamat asiat. Tähän oppaaseen on valittu kieli nimeltä __Go__, koska se on yksinkertainen, sillä on vaikea tehdä vahingossa muuta kuin mitä halusi tehdä ja sillä ohjelmointi on niin miellyttävää, että monet käyttävät sitä.
 
 ## [Miten asennan Go:n koneelleni?](setup.md)
-## [Ensimmäinen tehtävä: ensimmäinen ohjelma](helloworld.md)
+## [Ensimmäinen tehtävä: ensimmäinen ohjelma](../tehtävät/helloworld.md)
 
 ## Miten edetä tästä
-[Etusivulla](README.md) on kaavio, josta voi valita mitä opiskelee seuraavaksi.
+[Etusivulla](../README.md) on kaavio, josta voi valita mitä opiskelee seuraavaksi.
