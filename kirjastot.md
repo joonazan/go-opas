@@ -25,4 +25,4 @@ func Kirja() int {
 	return 42
 }
 ```
-Kukaan muu kuin minä itse ei kuitenkaan koskaan arvostaisi sitä tarpeeksi, se on ainoastaan tietokoneellani src-kansiossa omassa kansiossaan.
+Kukaan muu kuin minä itse ei kuitenkaan koskaan arvostaisi sitä tarpeeksi, se on ainoastaan tietokoneellani src-kansiossa omassa kansiossaan. Minulla on siellä myös toinen paljon hienompi kirjasto siellä, mutta en näytä sitä teille.
