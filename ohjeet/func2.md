@@ -1,6 +1,6 @@
 # Edistynyt funktioiden määritteleminen
 
-Laittamalla tyypin eteen ... voi tehdä funktion, joka ottaa vaikka kuinka monta argumenttia sliceen.
+Laittamalla tyypin eteen ... voi tehdä funktion, joka ottaa vaikka kuinka monta argumenttia sliceen. Tällaista funktiota kutsutaan _variadiseksi_.
 
 ```Go
 func kerroArgumenteista(argumentit ...interface{}) {
