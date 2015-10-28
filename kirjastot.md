@@ -4,4 +4,4 @@ Kirjastoista voi lainata kirjoja. Tai no nykyään sieltä voi lainata vaikka so
 
 Niitä voi lainata sieltä, mutta on ensin mentävä sinne kirjastoon. Siksi pitää ensin kirjoittaa import ja ne kirjastot. Sitten tietokone ratkaisee kauppamatkustajan ongelman ja laskee optimaalisen kirjastoreitin. Kun olet kertonut missä kirjastoissa käyt, pitää vielä suunnitella mitä kirjoja sieltä lainaa, koska eihän sitä turhaan kirjastoon halua raahautua. Kannattaa myös kertoa, mistä kirjastosta niitä kirjoja lainaa, koska samannimisiä kirjoja voi löytyä eri kirjastoista. Jos esimerkiksi lainaat kirjan vahingossa urheilukirjastosta, vaikka se oli tarkoitus lainata pornokirjastosta, kokemus ei varmastikaan ole nautinnollinen.
 
-Kirjastoja voi myös perustaa itse, jos on aikaa ja tilaa. Jotta kukaan voisi käyttää sitä sen on oltava kuitenkin githubissä̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈̈ HelMetissä. Tässä on minun OMA MAHTAVA kirjastoni. Kirjoitin sen IHAN ITSE
+Kirjastoja voi myös perustaa itse, jos on aikaa ja tilaa. Jotta kukaan voisi käyttää sitä sen on oltava kuitenkin ~githubissa~ Helmetissä. Tässä on minun OMA MAHTAVA kirjastoni. Kirjoitin sen IHAN ITSE!
