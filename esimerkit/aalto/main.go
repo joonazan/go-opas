@@ -16,17 +16,18 @@ func piirrä(aika float64) {
 
 	gl.Begin(gl.LINE_STRIP)
 
-	gl.Color3d(siniväri(aika*10), siniväri(aika*7), siniväri(aika*3))
+	gl.Color3d(nollastaYhteen(aika*10), nollastaYhteen(aika*7), nollastaYhteen(aika*3))
 
-	kerroin := 1.0 / (pisteitä - 1)
 	for i := 0.0; i < pisteitä; i++ {
-		x := i * kerroin
+
+		x := i / (pisteitä - 1)
+
 		gl.Vertex2d(x*2-1, 0.8*math.Sin(x*8+aika))
 	}
 
 	gl.End()
 }
 
-func siniväri(x float64) float64 {
+func nollastaYhteen(x float64) float64 {
 	return (math.Sin(x) + 1) * 0.5
 }
