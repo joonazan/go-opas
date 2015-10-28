@@ -8,6 +8,7 @@ Opas pyrkii olemaan kertomatta epäolennaisia yksityiskohtia heti, kuitenkaan op
 ## Jos olet jo aloittanut, valitse tästä seuraava tehtävä
 
 [Hello, world!](tehtävät/helloworld.md)
+
 [Viivojen piirtäminen](tehtävät/viivat.md)
 
 ### Go
