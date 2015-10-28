@@ -1,6 +1,18 @@
 # Kirjastot
 
-Kirjastoista voi lainata kirjoja. Tai no nykyään sieltä voi lainata vaikka soutuveneen. Mutta keskitytään nyt vanhoihin kunnon aikoihin, kun sieltä sai vain sivistyneitä kirjoja (ja sarjakuvia). Hyvinvarustelluista kirjastoista funktioita, tyyppejä, interfaceja ja metodeja.
+Kirjastoista voi lainata kirjoja. Tai no nykyään sieltä voi lainata vaikka soutuveneen. Mutta keskitytään nyt vanhoihin kunnon aikoihin, kun sieltä sai vain sivistyneitä kirjoja (ja sarjakuvia). Hyvinvarustelluista kirjastoista saa funktioita, tyyppejä, interfaceja ja metodeja.
+```Go
+package main
+
+import (
+	"fmt"
+	"kirjasto"
+)
+
+func main() {
+	fmt.Println(kirjasto.Kirja())
+}
+```
 
 Niitä voi lainata sieltä, mutta on ensin mentävä sinne kirjastoon. Siksi pitää ensin kirjoittaa import ja ne kirjastot. Sitten tietokone ratkaisee kauppamatkustajan ongelman ja laskee optimaalisen kirjastoreitin. Kun olet kertonut missä kirjastoissa käyt, pitää vielä suunnitella mitä kirjoja sieltä lainaa, koska eihän sitä turhaan kirjastoon halua raahautua. Kannattaa myös kertoa, mistä kirjastosta niitä kirjoja lainaa, koska samannimisiä kirjoja voi löytyä eri kirjastoista. Jos esimerkiksi lainaat kirjan vahingossa keittokirjastosta, vaikka se oli tarkoitus lainata pornokirjastosta, kokemus ei varmastikaan ole nautinnollinen.
 
