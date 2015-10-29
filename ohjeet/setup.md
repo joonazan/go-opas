@@ -16,6 +16,10 @@ Kokeile asennusta jollain ohjelmalla, esimerkiksi jollain kurssin esimerkkiohjel
 
 Lataa `go`, `git` ja TDM-GCC allaolevista linkeistä.
 
+https://golang.org/dl/
+https://git-scm.com/downloads
+http://tdm-gcc.tdragon.net/
+
 Suorita Go:n ja TDM-GCC:n asennusohjelmat oletusasetuksilla. Valitse Gitin asennusohjelmassa että haluat käyttää Gittiä komentoriviltä(Windows CMD), muuten oletusasetukset.
 
 Säädä ympäristömuuttujat graafisella työkalulla tai aja järjestelmävalvojakomentorivilla seuraavat komennot:
