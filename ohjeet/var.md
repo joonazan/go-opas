@@ -11,7 +11,7 @@ var muuttuja tyyppi
 ```
 
 tyyppi | nollaarvo
---------------------
+-------|-------------
 luvut | `0`
 `string` | `""`
 slice tai `map` | `nil`
