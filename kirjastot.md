@@ -19,7 +19,7 @@ Kannattaa myös kertoa, mistä kirjastosta niitä kirjoja lainaa, koska samannim
 
 Kirjastoja voi myös perustaa itse, jos on aikaa ja tilaa. Jotta kukaan voisi käyttää sitä sen on oltava kuitenkin ~~Githubissa~~ HelMetissä. Tässä on minun OMA MAHTAVA kirjastoni. Kirjoitin sen IHAN ITSE!
 ```Go
- package kirjasto
+package kirjasto
 
 func Kirja() int {
 	return 42
