@@ -4,20 +4,21 @@ Muuttujaan voi varastoida jotain. Koska eri asiat ovat eri kokoisia, muuttujaan 
 
 >Mutta esimerkiksi `int8` ja `uint8` -tyyppiset arvothan ovat molemmat 8 bitin pituisia! Miksi niitä ei voi varastoida samaan muuttujaan? Koska silloin voisi tapahtua ikäviä vahinkoja. `0xFF`(kahdeksan ykkösbittiä) on -1 `int8`:na ja 255 `uint8`:na!
 
-Muuttujan voi määritellä laittamalla ensin avainsanan `var`, sitten muuttujan nimen ja lopulta muttujan tyypin. Tällöin muuttujan arvo on kyseisen tyypin _nollaarvo_.
+Muuttujan voi määritellä laittamalla ensin avainsanan `var`, sitten muuttujan nimen ja lopulta muttujan tyypin. Tällöin muuttujan arvo on kyseisen tyypin [_nolla-arvo_](nollaarvo.md).
 
 ```Go
 var muuttuja tyyppi
 ```
 
-tyyppi | nollaarvo
--------|-------------
-luvut | `0`
-`string` | `""`
-slice tai `map` | `nil`
-`interface` | `nil`
-`func` | `nil`
+Yleensä muuttujaan kuitenkin halutaan heti varastoida jotain.
 
 ```Go
-
+silmien_määrä := 2
 ```
+
+Muuttujan nimi tulee siitä, että sitä voi muuttaa sijoittamalla siihen uuden arvon.
+
+```Go
+silmien_määrä = 3
+```
+
