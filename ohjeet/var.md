@@ -7,7 +7,7 @@ Muuttujaan voi varastoida jotain. Koska eri asiat ovat eri kokoisia, muuttujaan 
 Muuttujan voi määritellä laittamalla ensin avainsanan `var`, sitten muuttujan nimen ja lopulta muttujan tyypin. Tällöin muuttujan arvo on kyseisen tyypin [_nolla-arvo_](nollaarvo.md).
 
 ```Go
-var muuttuja tyyppi
+var muuttuja int
 ```
 
 Yleensä muuttujaan kuitenkin halutaan heti varastoida jotain.
