@@ -15,11 +15,8 @@ func annaViisi() int {
     return 5
 }
 
-func pienempiKuinKolme(luku uint32) bool {
-    if luku < 3 {
-        return true
-    }
-    return false
+func onkoPienempiKuinKolme(luku uint32) bool {
+    return luku < 3
 }
 ```
 
