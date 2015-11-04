@@ -16,9 +16,14 @@ Yleensä muuttujaan kuitenkin halutaan heti varastoida jotain.
 silmien_määrä := 2
 ```
 
+Muuttujan arvoa voi käyttää yksinkertaisesti kirjoittamalla sen nimen.
+
+```Go
+fmt.Println(silmien_määrä)
+```
+
 Muuttujan nimi tulee siitä, että sitä voi muuttaa sijoittamalla siihen uuden arvon.
 
 ```Go
 silmien_määrä = 3
 ```
-
