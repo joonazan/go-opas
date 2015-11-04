@@ -11,6 +11,8 @@ Opas pyrkii olemaan kertomatta epäolennaisia yksityiskohtia heti, kuitenkaan op
 
 [Viivojen piirtäminen](tehtävät/viivat.md)
 
+[Salasanan kysyminen](tehtävät/salasana.md)
+
 ### Go
 ![kaikki Go:n perusominaisuudet](index.png)
 
