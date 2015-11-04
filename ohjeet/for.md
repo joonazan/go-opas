@@ -15,7 +15,7 @@ func main() {
 }
 ```
 
-`for` toistaa sitä mikä on aaltosulkujen sisällä niin kauan kuin keskimmäinen osa (tässä tapauksessa `i < 10`) on tosi. Sitä ennen `for` tekee sen mitä ensimmäinen osa(`i := 0`) sanoo. Jokaisen toiston jälkeen for ajaa viimeisen osan (`i++`).
+`for` toistaa sitä mikä on aaltosulkujen sisällä niin kauan kuin keskimmäinen osa (tässä tapauksessa `i < 10`) on tosi. Sitä ennen `for` tekee sen mitä ensimmäinen osa, `i := 0` sanoo. Jokaisen toiston jälkeen for ajaa viimeisen osan, `i++`. (`++` kasvattaa lukua yhdellä.)
 
 Ensimmäisen ja viimeisen osan voi jättää pois jos niitä ei tarvitse.
 
