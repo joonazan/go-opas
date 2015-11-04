@@ -19,7 +19,7 @@
 
 Matematiikan funktiota kutsutaan ohjelmoinnissa _puhtaaksi funktioksi_. Funktio ohjelmoinnissa on puhdasta funktiota yksinkertaisempi ja mahtavampi. Mitä `Println` olisi matematiikassa?
 
-Funktion saa tekemään asioita _kutsumalla_ sitä, mutta sitä ennen se pitää olla [_määritelty_](func.go).
+Funktion saa tekemään asioita _kutsumalla_ sitä, mutta sitä ennen se pitää olla [_määritelty_](func.md).
 
 Funktiokutsu koostuu funktion nimestä, jota seuraavat sulut, jotka sisältävät funktion _argumentit_. Argumentit ovat ne arvot, jotka "menevät funktion sisään".
 
