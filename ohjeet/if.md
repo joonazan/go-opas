@@ -49,11 +49,11 @@ if korkeus >= 100 * kilometri {
 }
 ```
 
-Samalla tavalla kuin foriin, iffiin voi laittaa koodirivin, joka suoritetaan ennen valitsevaa osaa.
+Samalla tavalla kuin foriin, iffiin voi laittaa koodirivin, joka suoritetaan ennen varsinaista osaa.
 
 ```Go
 if teksti, virhe := haeSivu(); virhe == nil {
-  käsitteleSivu(teksti)
+  lueSivu(teksti)
 } else {
   fmt.Println("Tuli virhe:", virhe)
 }
