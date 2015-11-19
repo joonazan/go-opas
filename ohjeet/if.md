@@ -17,9 +17,9 @@ func main() {
 
 ```
 
-Jos `if`:lle annetaan `true`, niin sen sisällä oleva koodi suoritetaan. Jos sille annetaan false, niin sitä ei suoriteta. Mitään muuta iffille ei voikaan antaa, koska sille on pakko antaa jotain `bool`-[tyyppistä](tyypit.md).
+Jos `if`:lle annetaan `true`, niin sen sisällä oleva koodi suoritetaan. Jos sille annetaan `false`, niin sitä ei suoriteta. Mitään muuta iffille ei voikaan antaa, koska sille on pakko antaa jotain `bool`-[tyyppistä](tyypit.md).
 
-Tämähän on aivan hyödytöntä! Onneksi iffille voi antaa jotain josta ei tiedä onko se `true` vai `false`. Booleaneja voi rakentaa kaikenlaisista muista arvoista vertailuoperaattoreilla. Niitä on `==`, `!=`, `<`, `>`, `<=` ja `>=`. Ne toimivat juuri niinkuin matematiikassa. `!=` tarkoittaa ei ole yhtäsuuri.
+Tämähän on aivan hyödytöntä! Onneksi iffille voi antaa jotain josta ei tiedä onko se `true` vai `false`. Booleaneja voi rakentaa kaikenlaisista muista arvoista vertailuoperaattoreilla. Niitä on `==`, `!=`, `<`, `>`, `<=` ja `>=`. Ne toimivat juuri niin kuin matematiikassa. `!=` tarkoittaa "ei ole yhtäsuuri".
 
 ```Go
 if korkeus < 100 * kilometri {
@@ -49,11 +49,11 @@ if korkeus >= 100 * kilometri {
 }
 ```
 
-Samalla tavalla kuin foriin, iffiin voi laittaa koodirivin, joka suoritetaan ennen valitsevaa osaa.
+Samalla tavalla kuin foriin, iffiin voi laittaa koodirivin, joka suoritetaan ennen varsinaista osaa.
 
 ```Go
 if teksti, virhe := haeSivu(); virhe == nil {
-  käsitteleSivu(teksti)
+  lueSivu(teksti)
 } else {
   fmt.Println("Tuli virhe:", virhe)
 }
