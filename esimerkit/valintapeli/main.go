@@ -8,7 +8,7 @@ func main() {
 
 func alku() Tila {
 	fmt.Println("Sinulla on tylsää. Mitä teet?")
-	return valitse([]Vaihtoehto{
+	return Valitse([]Vaihtoehto{
 		{"älä tee mitään", alku},
 		{"itke", yhyy},
 	})

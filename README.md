@@ -13,6 +13,8 @@ Opas pyrkii olemaan kertomatta epäolennaisia yksityiskohtia heti, kuitenkaan op
 
 [Salasanan kysyminen](tehtävät/salasana.md)
 
+[Valintapeli](tehtävät/valintapeli.md)
+
 ### Go
 ![kaikki Go:n perusominaisuudet](index.png)
 
