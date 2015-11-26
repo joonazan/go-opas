@@ -15,9 +15,7 @@ func Valitse(v Vaihtoehdot) Tila {
 	v.Näytä()
 
 	for {
-		var sana string
-		fmt.Scanln(&sana)
-		tila, err := v.Valitse(sana)
+		tila, err := v.Valitse()
 
 		if err == nil {
 			return tila
@@ -34,7 +32,10 @@ func (v Vaihtoehdot) Näytä() {
 	}
 }
 
-func (v Vaihtoehdot) Valitse(kirjoitettu string) (tila Tila, err error) {
+func (v Vaihtoehdot) Valitse() (tila Tila, err error) {
+
+	var kirjoitettu string
+	fmt.Scanln(&kirjoitettu)
 
 	if len(kirjoitettu) != 1 {
 		err = errors.New("Kirjoita yksi kirjain.")
