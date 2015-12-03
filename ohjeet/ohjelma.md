@@ -1,6 +1,7 @@
 # Mikä on ohjelma?
 
 ![kuva Ur-Quan Mastersista](uqm.png)
+_tämä ei ole ohjelma!_
 
 Ohjelmaa ei voi nähdä, kuulla, haistaa, maistaa eikä tuntea. Se ei ole lämmin eikä kylmä.
 
