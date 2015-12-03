@@ -11,6 +11,7 @@ func alku() Tila {
 	return Valitse([]Vaihtoehto{
 		{"älä tee mitään", alku},
 		{"itke", yhyy},
+		teeUlottuvuusvaihtoehto(alku),
 	})
 }
 

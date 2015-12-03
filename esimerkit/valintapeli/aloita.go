@@ -2,9 +2,10 @@ package main
 
 type Tila func() Tila
 
-func Aloita(alku Tila) {
+// Käynnistää pelin annetusta tilasta.
+func Aloita(alkutila Tila) {
 
-	tila := alku
+	tila := alkutila
 
 	for {
 		tila = tila()
