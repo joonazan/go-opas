@@ -9,6 +9,7 @@ import (
 	"github.com/stretchr/objx"
 	"github.com/stretchr/signature"
 	"html/template"
+	"log"
 	"net/http"
 )
 
@@ -60,7 +61,7 @@ func authentication(w http.ResponseWriter, r *http.Request) {
 func getUser(r *http.Request) (user common.User, err error) {
 	provider, err := gomniauth.Provider("google")
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	omap, err := objx.FromURLQuery(r.URL.RawQuery)
@@ -110,7 +111,7 @@ func init() {
 	var err error
 	loginPage, err = template.ParseFiles("data/login.html")
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 }
 
@@ -123,7 +124,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 	provider, err := gomniauth.Provider("google")
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	state := gomniauth.NewState("after", "success")

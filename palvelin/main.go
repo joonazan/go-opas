@@ -2,7 +2,9 @@ package main
 
 import (
 	"html/template"
+	"log"
 	"net/http"
+	"strconv"
 )
 
 const PalvelimenOsoite = "http://localhost:8080"
@@ -11,7 +13,7 @@ func main() {
 
 	t, err := template.ParseFiles("data/aiheet.html")
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	http.HandleFunc("/", loginRequired(func(w http.ResponseWriter, r *http.Request, u User) {
@@ -21,15 +23,50 @@ func main() {
 		i := 0
 		for k, v := range aiheet {
 			a[i].Aihe = v
+			a[i].Id = k
 			a[i].Tila = oppilaanEdistyminen[k]
 			i++
 		}
-		t.Execute(w, struct{ Aiheet []AiheJaEdistyminen }{Aiheet: a})
+		err := t.Execute(w, struct{ Aiheet []AiheJaEdistyminen }{Aiheet: a})
+		if err != nil {
+			log.Println(err)
+		}
+	}))
+
+	http.HandleFunc("/setstatus", loginRequired(func(w http.ResponseWriter, r *http.Request, u User) {
+		err := r.ParseForm()
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		if len(r.Form) != 1 {
+			http.Error(w, "Wrong amount of form params", http.StatusInternalServerError)
+			return
+		}
+
+		for k, v := range r.Form {
+			if _, ok := aiheet[k]; !ok {
+				http.Error(w, "Aihe ei ole olemassa.", http.StatusInternalServerError)
+				return
+			}
+			if len(v) != 1 {
+				http.Error(w, "???", http.StatusInternalServerError)
+			}
+			integer, err := strconv.Atoi(v[0])
+			if err != nil {
+				http.Error(w, "Not an integer", http.StatusInternalServerError)
+				return
+			}
+			edistymiset.Edistyminen(u.Email)[k] = uint8(integer)
+		}
+
+		http.Error(w, "What did you expect?", http.StatusNoContent)
 	}))
 
 	http.HandleFunc("/authcallback/google", authentication)
 
-	panic(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
 const (

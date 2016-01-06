@@ -5,6 +5,7 @@ type Aihe struct {
 }
 
 type AiheJaEdistyminen struct {
+	Id string
 	Aihe
 	Tila uint8
 }
