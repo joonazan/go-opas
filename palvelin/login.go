@@ -104,18 +104,22 @@ func userFromCookie(r *http.Request) (user User, err error) {
 	return
 }
 
+var loginPage *template.Template
+
+func init() {
+	var err error
+	loginPage, err = template.ParseFiles("data/login.html")
+	if err != nil {
+		panic(err)
+	}
+}
+
+type Provider struct {
+	URL  template.URL
+	Name string
+}
+
 func login(w http.ResponseWriter, r *http.Request) {
-	template, err := template.New("loginpage").Parse(`
-			<!DOCTYPE html>
-				<body>
-				<h2>Log in with...</h2>
-				<ul>
-					<li>
-					<a href="{{.}}">Google</a>
-					</li>
-				</ul>
-				</body>
-		`)
 
 	provider, err := gomniauth.Provider("google")
 	if err != nil {
@@ -130,5 +134,5 @@ func login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	template.Execute(w, authUrl)
+	loginPage.Execute(w, []Provider{{URL: template.URL(authUrl), Name: "Google"}})
 }

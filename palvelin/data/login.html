@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<body>
+<h2>Log in with...</h2>
+<ul>
+	{{range .}}
+	<li>
+	<a href="{{.URL}}">{{.Name}}</a>
+	</li>
+	{{end}}
+</ul>
+</body>

@@ -9,14 +9,14 @@ const PalvelimenOsoite = "http://localhost:8080"
 
 func main() {
 
-	http.HandleFunc("/", loginRequired(func(w http.ResponseWriter, r *http.Request, u User) {
-		t, err := template.ParseFiles("aiheet.html")
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
+	t, err := template.ParseFiles("data/aiheet.html")
+	if err != nil {
+		panic(err)
+	}
 
-		oppilaanEdistyminen := edistymiset[u.Email]
+	http.HandleFunc("/", loginRequired(func(w http.ResponseWriter, r *http.Request, u User) {
+
+		oppilaanEdistyminen := edistymiset.Edistyminen(u.Email)
 		a := make([]AiheJaEdistyminen, len(aiheet))
 		i := 0
 		for k, v := range aiheet {
@@ -58,3 +58,12 @@ var (
 	edistymiset = make(Edistymiset)
 	aiheet      = make(map[string]Aihe)
 )
+
+func init() {
+	aiheet = map[string]Aihe{
+		"ohjelma": {
+			Nimi: "Mikä on ohjelma?",
+		},
+		"setup": {Nimi: "Go:n asentaminen"},
+	}
+}
