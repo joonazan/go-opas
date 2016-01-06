@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"html/template"
 	"net/http"
 )
 
@@ -10,7 +10,21 @@ const PalvelimenOsoite = "http://localhost:8080"
 func main() {
 
 	http.HandleFunc("/", loginRequired(func(w http.ResponseWriter, r *http.Request, u User) {
-		fmt.Fprint(w, edistymiset.Edistyminen(u.Email))
+		t, err := template.ParseFiles("aiheet.html")
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		oppilaanEdistyminen := edistymiset[u.Email]
+		a := make([]AiheJaEdistyminen, len(aiheet))
+		i := 0
+		for k, v := range aiheet {
+			a[i].Aihe = v
+			a[i].Tila = oppilaanEdistyminen[k]
+			i++
+		}
+		t.Execute(w, struct{ Aiheet []AiheJaEdistyminen }{Aiheet: a})
 	}))
 
 	http.HandleFunc("/authcallback/google", authentication)
@@ -40,4 +54,7 @@ func (e Edistymiset) Tallenna() {
 
 }
 
-var edistymiset = make(Edistymiset)
+var (
+	edistymiset = make(Edistymiset)
+	aiheet      = make(map[string]Aihe)
+)
