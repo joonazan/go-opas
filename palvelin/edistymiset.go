@@ -14,6 +14,7 @@ const (
 	EiTehty = iota
 	Tehty
 	Aloitettu
+	TilojenMäärä
 )
 
 var (

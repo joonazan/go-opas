@@ -5,8 +5,12 @@
 		function setStatus(id, status){
 			var req = new XMLHttpRequest();
 			req.open("POST", "setstatus");
-			req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+			req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			req.send(id + "=" + status);
+		}
+
+		function recolor(element, color){
+			element.style.backgroundColor = color;
 		}
 	</script>
 </head>
@@ -20,7 +24,7 @@
 	<div style="background-color: {{index $kaikki.TilojenVärit $aihe.Tila}}">
 		<h2>{{$aihe.Nimi}}</h2>
 		{{range $i, $nimi := $kaikki.TilojenNimet}} {{if ne $i $aihe.Tila}}
-		<button onclick="setStatus({{$aihe.Id}}, {{$i}})">{{$nimi}}</button>
+		<button onclick="setStatus({{$aihe.Id}}, {{$i}}); recolor(this.parentElement, {{index $kaikki.TilojenVärit $i}})">{{$nimi}}</button>
 		{{end}}{{end}}
 	</div>
 	{{end}}

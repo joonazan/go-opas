@@ -68,6 +68,10 @@ func main() {
 				http.Error(w, "Not an integer", http.StatusInternalServerError)
 				return
 			}
+			if integer > TilojenMäärä {
+				http.Error(w, "Tuo ei ole yksikään tiloista!", http.StatusInternalServerError)
+				return
+			}
 			edistymiset.Edistyminen(u.Email).Set(k, uint8(integer))
 		}
 
