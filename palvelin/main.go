@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 const PalvelimenOsoite = "http://localhost:8080"
@@ -21,13 +22,22 @@ func main() {
 		oppilaanEdistyminen := edistymiset.Edistyminen(u.Email)
 		a := make([]AiheJaEdistyminen, len(aiheet))
 		i := 0
-		for k, v := range aiheet {
-			a[i].Aihe = v
-			a[i].Id = k
-			a[i].Tila = oppilaanEdistyminen[k]
+		for id, aihe := range aiheet {
+			a[i].Aihe = aihe
+			a[i].Id = id
+			a[i].Tila = oppilaanEdistyminen.Get(id)
 			i++
 		}
-		err := t.Execute(w, struct{ Aiheet []AiheJaEdistyminen }{Aiheet: a})
+
+		err := t.Execute(w, struct {
+			Aiheet       []AiheJaEdistyminen
+			TilojenNimet []string
+			TilojenVärit []string
+		}{
+			Aiheet:       a,
+			TilojenNimet: []string{"Aloittamaton", "Tehty!", "Aloitettu"},
+			TilojenVärit: []string{"grey", "green", "yellow"},
+		})
 		if err != nil {
 			log.Println(err)
 		}
@@ -58,7 +68,7 @@ func main() {
 				http.Error(w, "Not an integer", http.StatusInternalServerError)
 				return
 			}
-			edistymiset.Edistyminen(u.Email)[k] = uint8(integer)
+			edistymiset.Edistyminen(u.Email).Set(k, uint8(integer))
 		}
 
 		http.Error(w, "What did you expect?", http.StatusNoContent)
@@ -66,33 +76,15 @@ func main() {
 
 	http.HandleFunc("/authcallback/google", authentication)
 
+	http.HandleFunc("/logout", logout)
+
+	edistymiset.TallennaVälein(time.Minute * 10)
+
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-const (
-	EiTehty = iota
-	Tehty
-	Aloitettu
-)
-
-type Edistyminen map[string]uint8
-
-type Edistymiset map[string]Edistyminen
-
-func (e Edistymiset) Edistyminen(oppilas string) Edistyminen {
-	if o, ok := e[oppilas]; ok {
-		return o
-	}
-	e[oppilas] = make(Edistyminen)
-	return e[oppilas]
-}
-
-func (e Edistymiset) Tallenna() {
-
-}
-
 var (
-	edistymiset = make(Edistymiset)
+	edistymiset = lataaEdistymiset()
 	aiheet      = make(map[string]Aihe)
 )
 

@@ -2,21 +2,26 @@
 
 <head>
 	<script>
-		function setDone(id){
+		function setStatus(id, status){
 			var req = new XMLHttpRequest();
 			req.open("POST", "setstatus");
 			req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-			req.send(id + "=1");
+			req.send(id + "=" + status);
 		}
 	</script>
 </head>
 
+{{$kaikki := .}}
+
 <body>
+	<a href="logout">Kirjaudu ulos</a>
 	<h1>Oppimateriaali</h1>
-	{{range .Aiheet}}
-	<div style="background-color: {{if .Tila}}green{{else}}gray{{end}}">
-		<h2>{{.Nimi}}</h2>
+	{{range $aihe := .Aiheet}}
+	<div style="background-color: {{index $kaikki.TilojenVärit $aihe.Tila}}">
+		<h2>{{$aihe.Nimi}}</h2>
+		{{range $i, $nimi := $kaikki.TilojenNimet}} {{if ne $i $aihe.Tila}}
+		<button onclick="setStatus({{$aihe.Id}}, {{$i}})">{{$nimi}}</button>
+		{{end}}{{end}}
 	</div>
-	<button onclick="setDone({{.Id}})">Tehty!</button>
 	{{end}}
 </body>

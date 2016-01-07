@@ -28,6 +28,16 @@ func init() {
 	gob.Register(User{})
 }
 
+func logout(w http.ResponseWriter, r *http.Request) {
+	http.SetCookie(w, &http.Cookie{
+		Name:   cookieName,
+		Value:  "",
+		Path:   "/",
+		MaxAge: -1,
+	})
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
+
 func authentication(w http.ResponseWriter, r *http.Request) {
 
 	user, err := getUser(r)
