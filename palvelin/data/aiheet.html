@@ -13,6 +13,26 @@
 			element.style.backgroundColor = color;
 		}
 	</script>
+	<style>
+		.tila0 {
+			background-color: gray;
+		}
+		.tila1 {
+			background-color: green;
+		}
+		.tila2 {
+			background-color: yellow;
+		}
+		.tila0 > .nappula0 {
+			visibility: hidden;
+		}
+		.tila1 > .nappula1 {
+			visibility: hidden;
+		}
+		.tila2 > .nappula2 {
+			visibility: hidden;
+		}
+	</style>
 </head>
 
 {{$kaikki := .}}
@@ -21,11 +41,13 @@
 	<a href="logout">Kirjaudu ulos</a>
 	<h1>Oppimateriaali</h1>
 	{{range $aihe := .Aiheet}}
-	<div style="background-color: {{index $kaikki.TilojenVärit $aihe.Tila}}">
+	<div class="tila{{$aihe.Tila}}">
 		<h2>{{$aihe.Nimi}}</h2>
-		{{range $i, $nimi := $kaikki.TilojenNimet}} {{if ne $i $aihe.Tila}}
-		<button onclick="setStatus({{$aihe.Id}}, {{$i}}); recolor(this.parentElement, {{index $kaikki.TilojenVärit $i}})">{{$nimi}}</button>
-		{{end}}{{end}}
+		{{range $i, $nimi := $kaikki.TilojenNimet}}
+		<button class="nappula{{$i}}" onclick="setStatus({{$aihe.Id}}, {{$i}}); this.parentElement.className='tila{{$i}}'">
+			{{$nimi}}
+		</button>
+		{{end}}
 	</div>
 	{{end}}
 </body>

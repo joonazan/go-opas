@@ -32,11 +32,9 @@ func main() {
 		err := t.Execute(w, struct {
 			Aiheet       []AiheJaEdistyminen
 			TilojenNimet []string
-			TilojenVärit []string
 		}{
 			Aiheet:       a,
 			TilojenNimet: []string{"Aloittamaton", "Tehty!", "Aloitettu"},
-			TilojenVärit: []string{"grey", "green", "yellow"},
 		})
 		if err != nil {
 			log.Println(err)
