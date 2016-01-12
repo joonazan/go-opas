@@ -85,16 +85,4 @@ func main() {
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-var (
-	edistymiset = lataaEdistymiset()
-	aiheet      = make(map[string]Aihe)
-)
-
-func init() {
-	aiheet = map[string]Aihe{
-		"ohjelma": {
-			Nimi: "Mikä on ohjelma?",
-		},
-		"setup": {Nimi: "Go:n asentaminen"},
-	}
-}
+var edistymiset = lataaEdistymiset()
