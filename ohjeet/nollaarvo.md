@@ -1,3 +1,5 @@
+# Nolla-arvot
+
 tyyppi | nolla-arvo
 -------|-------------
 luvut | `0`
