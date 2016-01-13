@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 	"time"
 )
@@ -82,7 +83,7 @@ func main() {
 
 	edistymiset.TallennaVälein(time.Minute * 10)
 
-	log.Fatal(http.ListenAndServe(":80", nil))
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), nil))
 }
 
 var edistymiset = lataaEdistymiset()
