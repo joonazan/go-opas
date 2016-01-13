@@ -29,7 +29,7 @@ func main() {
 			i++
 		}
 
-		a = lajittele(a)
+		Aiheluettelo(a).Lajittele()
 
 		err := t.Execute(w, struct {
 			Aiheet       []AiheJaEdistyminen

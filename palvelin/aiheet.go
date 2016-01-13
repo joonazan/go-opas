@@ -9,8 +9,9 @@ import (
 )
 
 type Aihe struct {
-	Nimi string
-	URL  template.URL
+	Nimi        string
+	URL         template.URL
+	Vaatimukset []string
 }
 
 var aiheet = lataaAiheet()
