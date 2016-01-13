@@ -6,17 +6,13 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 type Aihe struct {
-	Nimi string
-	URL  template.URL
-}
-
-type AiheJaEdistyminen struct {
-	Id string
-	Aihe
-	Tila uint8
+	Nimi      string
+	URL       template.URL
+	Esitiedot []string
 }
 
 var aiheet = lataaAiheet()
@@ -49,12 +45,43 @@ func lataaAiheetKansiosta(aiheet map[string]Aihe, kansio string) {
 			tiedostonimi := filepath.Base(tiedostopolku)
 			id := tiedostonimi[:len(tiedostonimi)-len(".md")]
 			aiheet[id] = Aihe{
-				Nimi: scanner.Text()[2:],
-				URL:  template.URL(tiedostonimi),
+				Nimi:      scanner.Text()[2:],
+				URL:       template.URL(tiedostonimi),
+				Esitiedot: haeEsitiedot(id),
 			}
 			lisääOpetussivu(tiedostonimi, tiedostopolku)
 		} else {
 			log.Println("Jotain pielessä tiedostossa", tiedostopolku)
 		}
 	}
+
+	kuvaTiedostot, err := filepath.Glob(kansio + "*.png")
+	if err != nil {
+		panic(err)
+	}
+
+	for _, kuvapolku := range kuvaTiedostot {
+		tiedostonimi := filepath.Base(kuvapolku)
+		lisääKuva(tiedostonimi, kuvapolku)
+	}
+}
+
+// jos esitietotiedostoa ei löydy, palauttaa yhden esitiedon id:llä "määrittelemättömät esitiedot"
+func haeEsitiedot(id string) []string {
+	tiedosto, err := os.Open("../esitiedot/" + id)
+	if err != nil {
+		return []string{"määrittelemättömät esitiedot"}
+	}
+	defer tiedosto.Close()
+
+	esitiedot := make([]string, 0)
+	scanner := bufio.NewScanner(tiedosto)
+	for scanner.Scan() {
+		rivi := strings.TrimSpace(scanner.Text())
+		if rivi != "" {
+			esitiedot = append(esitiedot, rivi)
+		}
+	}
+
+	return esitiedot
 }
