@@ -1,7 +1,7 @@
 package main
 
 import (
-	gfm "github.com/joonazan/go-opas/Godeps/_workspace/src/github.com/shurcooL/github_flavored_markdown"
+	gfm "github.com/shurcooL/github_flavored_markdown"
 	"io/ioutil"
 	"net/http"
 )
