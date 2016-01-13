@@ -1,6 +1,6 @@
 # `for`
 
-Asioiden toistaminen on ikävää. Onneksi tietokoneen voi ohjeistaa tekemään sen meidän puolesta. Jos ohjelmoit Go:ta ja haluat tehdä jotain monta kertaa, sano `for`! (En tiedä miten harmaa laatikko `for`:n ympärillä lausutaan...)
+Asioiden toistaminen on ikävää. Onneksi tietokoneen voi ohjeistaa tekemään sen meidän puolesta. Jos ohjelmoit Go:ta ja haluat tehdä jotain monta kertaa, sano `for`! (En tiedä miten sen voi lausua niin, että se kuulostaa koodilta...)
 
 ```Go
 package main
