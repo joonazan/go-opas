@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-const PalvelimenOsoite = "http://localhost:8080"
+const PalvelimenOsoite = "https://go-opas.herokuapp.com"
 
 func main() {
 
@@ -82,7 +82,7 @@ func main() {
 
 	edistymiset.TallennaVälein(time.Minute * 10)
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":80", nil))
 }
 
 var edistymiset = lataaEdistymiset()
