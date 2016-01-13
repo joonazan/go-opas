@@ -29,6 +29,8 @@ func main() {
 			i++
 		}
 
+		a = lajittele(a)
+
 		err := t.Execute(w, struct {
 			Aiheet       []AiheJaEdistyminen
 			TilojenNimet []string

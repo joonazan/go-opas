@@ -13,12 +13,6 @@ type Aihe struct {
 	URL  template.URL
 }
 
-type AiheJaEdistyminen struct {
-	Id string
-	Aihe
-	Tila uint8
-}
-
 var aiheet = lataaAiheet()
 
 func lataaAiheet() (aiheet map[string]Aihe) {
