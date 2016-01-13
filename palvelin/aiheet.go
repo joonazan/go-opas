@@ -50,8 +50,9 @@ func lataaAiheetKansiosta(aiheet map[string]Aihe, kansio string) {
 			id := tiedostonimi[:len(tiedostonimi)-len(".md")]
 			aiheet[id] = Aihe{
 				Nimi: scanner.Text()[2:],
-				URL:  template.URL(id),
+				URL:  template.URL(tiedostonimi),
 			}
+			lisääOpetussivu(tiedostonimi, tiedostopolku)
 		} else {
 			log.Println("Jotain pielessä tiedostossa", tiedostopolku)
 		}
