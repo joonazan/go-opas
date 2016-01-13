@@ -32,6 +32,10 @@
 		.tila2 > .nappula2 {
 			visibility: hidden;
 		}
+
+		.esitiedetty{
+			color: green;
+		}
 	</style>
 </head>
 
@@ -43,6 +47,14 @@
 	{{range $aihe := .Aiheet}}
 	<div class="tila{{$aihe.Tila}}">
 		<a href="materiaali/{{$aihe.URL}}"><h2>{{$aihe.Nimi}}</h2></a>
+
+		{{range $aihe.TäyttämättömätVaatimukset}}
+		<span>{{(index $kaikki.IdAiheeksi .).Nimi}}&nbsp;</span>
+		{{end}}<br/>
+		{{range $aihe.TäytetytVaatimukset}}
+		<span class="esitiedetty">{{(index $kaikki.IdAiheeksi .).Nimi}}&nbsp;</span>
+		{{end}}<br/>
+		
 		{{range $i, $nimi := $kaikki.TilojenNimet}}
 		<button class="nappula{{$i}}" onclick="setStatus({{$aihe.Id}}, {{$i}}); this.parentElement.className='tila{{$i}}'">
 			{{$nimi}}

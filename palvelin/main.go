@@ -26,6 +26,7 @@ func main() {
 			a[i].Aihe = aihe
 			a[i].Id = id
 			a[i].Tila = oppilaanEdistyminen.Get(id)
+			a[i].TäytetytVaatimukset, a[i].TäyttämättömätVaatimukset = luokitteleEsitiedot(aihe.Esitiedot, oppilaanEdistyminen)
 			i++
 		}
 
@@ -34,9 +35,11 @@ func main() {
 		err := t.Execute(w, struct {
 			Aiheet       []AiheJaEdistyminen
 			TilojenNimet []string
+			IdAiheeksi   map[string]Aihe
 		}{
 			Aiheet:       a,
 			TilojenNimet: []string{"Aloittamaton", "Tehty!", "Aloitettu"},
+			IdAiheeksi:   aiheet,
 		})
 		if err != nil {
 			log.Println(err)
@@ -88,3 +91,14 @@ func main() {
 }
 
 var edistymiset = lataaEdistymiset()
+
+func luokitteleEsitiedot(esitiedot []string, edistyminen Edistyminen) (täytetty []string, täyttämätön []string) {
+	for _, aiheId := range esitiedot {
+		if edistyminen.Get(aiheId) == Tehty {
+			täytetty = append(täytetty, aiheId)
+		} else {
+			täyttämätön = append(täyttämätön, aiheId)
+		}
+	}
+	return
+}
