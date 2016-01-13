@@ -54,6 +54,16 @@ func lataaAiheetKansiosta(aiheet map[string]Aihe, kansio string) {
 			log.Println("Jotain pielessä tiedostossa", tiedostopolku)
 		}
 	}
+
+	kuvaTiedostot, err := filepath.Glob(kansio + "*.png")
+	if err != nil {
+		panic(err)
+	}
+
+	for _, kuvapolku := range kuvaTiedostot {
+		tiedostonimi := filepath.Base(kuvapolku)
+		lisääKuva(tiedostonimi, kuvapolku)
+	}
 }
 
 // jos esitietotiedostoa ei löydy, palauttaa yhden esitiedon id:llä "määrittelemättömät esitiedot"
