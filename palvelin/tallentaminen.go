@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"gopkg.in/redis.v3"
+	"github.com/joonazan/go-opas/Godeps/_workspace/src/gopkg.in/redis.v3"
 	"log"
 )
 

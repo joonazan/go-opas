@@ -83,6 +83,15 @@
 			"Rev": "62ac18b461605b4be188bbc7300e9aa2bc836cd4"
 		},
 		{
+			"ImportPath": "gopkg.in/bsm/ratelimit.v1",
+			"Rev": "f14ad9c78b155f69b480cfa41cb655259baac260"
+		},
+		{
+			"ImportPath": "gopkg.in/redis.v3",
+			"Comment": "v3.2.27",
+			"Rev": "dd1ac33826064181d7abaa20d976eab31ec12b58"
+		},
+		{
 			"ImportPath": "labix.org/v2/mgo/bson",
 			"Comment": "287",
 			"Rev": "gustavo@niemeyer.net-20140501184651-975yyw9ipld92pji"
