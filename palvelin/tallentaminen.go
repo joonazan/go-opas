@@ -29,7 +29,7 @@ var client = uusiRedis()
 
 func uusiRedis() *redis.Client {
 	return redis.NewClient(&redis.Options{
-		Addr:     os.Getenv("REDISCLOUD_URL"), //"pub-redis-14130.eu-west-1-1.1.ec2.garantiadata.com:14130",
+		Addr:     os.Getenv("REDISCLOUD_ADDRESS"), //"pub-redis-14130.eu-west-1-1.1.ec2.garantiadata.com:14130",
 		Password: os.Getenv("REDISCLOUD_PASSWORD"),
 		DB:       0,
 	})
