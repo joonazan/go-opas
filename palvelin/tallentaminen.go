@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/joonazan/go-opas/Godeps/_workspace/src/gopkg.in/redis.v3"
 	"log"
+	"os"
 )
 
 func lataaEdistymiset() Edistymiset {
@@ -28,8 +29,8 @@ var client = uusiRedis()
 
 func uusiRedis() *redis.Client {
 	return redis.NewClient(&redis.Options{
-		Addr:     "pub-redis-14130.eu-west-1-1.1.ec2.garantiadata.com:14130",
-		Password: "jiGlfAHgBPa7Co3c",
+		Addr:     os.Getenv("REDISCLOUD_URL"), //"pub-redis-14130.eu-west-1-1.1.ec2.garantiadata.com:14130",
+		Password: os.Getenv("REDISCLOUD_PASSWORD"),
 		DB:       0,
 	})
 }
