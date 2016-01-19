@@ -6,7 +6,7 @@ import (
 )
 
 var (
-	markdownsivunAlku  = []byte(`<!DOCTYPE html><head><meta charset="utf-8"><link href="../static/gfm.css" media="all" rel="stylesheet" type="text/css" /></head><body>`)
+	markdownsivunAlku  = []byte(`<!DOCTYPE html><head><meta charset="utf-8"><link rel="stylesheet" type="text/css" href="/static/ohje.css"></head><body>`)
 	markdownsivunLoppu = []byte(`</body>`)
 )
 
@@ -37,12 +37,13 @@ func lisääKuva(nimi string, tiedostopolku string) {
 }
 
 func init() {
-	tavut, err := ioutil.ReadFile("data/github-markdown.css")
+	tavut, err := ioutil.ReadFile("data/ohje.css")
 	if err != nil {
 		panic(err)
 	}
 
-	http.HandleFunc("/static/gfm.css", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/static/ohje.css", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/css")
 		w.Write(tavut)
 	})
 }
