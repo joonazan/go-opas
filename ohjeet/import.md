@@ -1,4 +1,4 @@
-# `import`
+# Import
 
 `import`-komennolla otetaan käyttöön paketteja. Sanan `import` jälkeen tulee paketin polku. Paketin nimi on se osa polkua, joka tulee viimeisen kauttaviivan jälkeen.
 
@@ -6,12 +6,12 @@ Go:n mukana tulevien pakettien käyttämiseen riittää pelkkä paketin nimi
 ```Go
 import "math"
 ```
-Go etsii muut paketit Go-kansiosta. Esimerkiksi minulla on kopio kirjastosta _vec2_ kansiossa `/home/joonazan/go/src/github.com/joonazan/vec2`, koska minun GOPATH on `/home/joonazan/go`.
+Go etsii muut paketit Go-kansiosta. Esimerkiksi minulla on kopio paketista _vec2_ kansiossa `/home/joonazan/go/src/github.com/joonazan/vec2`, koska minun GOPATH on `/home/joonazan/go`.
 ```Go
 import "gogame/bresenham"
 import "github.com/joonazan/vec2"
 ```
-Kirjaston polku voi samalla olla myös URL, josta sen saa. Paketin ja kaikki sen vaatimat paketit saa ladattua komennolla `go get`. Esim. `go get "github.com/joonazan/vec2"`.
+Paketin polku voi samalla olla myös URL, josta sen saa. Paketin ja kaikki sen vaatimat paketit saa ladattua komennolla `go get`. Esim. `go get "github.com/joonazan/vec2"`.
 
 Monen asian importtaaminen ei vaadi importin moneen kertaan kirjoittamista.
 ```Go

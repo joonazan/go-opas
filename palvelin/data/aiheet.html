@@ -46,7 +46,7 @@
 	<h1>Oppimateriaali</h1>
 	{{range $aihe := .Aiheet}}
 	<div class="tila{{$aihe.Tila}}">
-		<a href="materiaali/{{$aihe.URL}}"><h2>{{$aihe.Nimi}}</h2></a>
+		<a href="/materiaali/{{$aihe.URL}}"><h2>{{$aihe.Nimi}}</h2></a>
 
 		{{range $aihe.TäyttämättömätVaatimukset}}
 		<span>{{(index $kaikki.IdAiheeksi .).Nimi}}&nbsp;</span>

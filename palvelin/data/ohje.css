@@ -1,0 +1,23 @@
+body{
+	margin:40px auto;
+	max-width:650px;
+	line-height:1.6;
+	font-size:18px;
+	padding:0 10px
+}
+h1,h2,h3{line-height:1.2}
+code{
+	font-size: 16px;
+	color: #272822;
+}
+.highlight{
+	font-size: 14px;
+	line-height: 1.2;
+	padding: 7px;
+	background-color: #272822;
+	color: #FFFFFF;
+}
+.highlight .k{color: #F92672;}
+.highlight .s{color: #FD971F;}
+.highlight .m{color: #AE81FF;}
+.highlight .c{color: #75715E;}
