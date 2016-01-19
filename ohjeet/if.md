@@ -1,4 +1,4 @@
-# `if`
+# If
 
 ```Go
 package main

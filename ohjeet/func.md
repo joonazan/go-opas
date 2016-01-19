@@ -1,6 +1,6 @@
 # Funktio
 
-Funktio on tapa antaa uusi nimi jonkin tekemiselle.
+Funktio on tapa antaa nimi jonkin tekemiselle.
 
 Funktion määrittely alkaa aina avainsanalla `func`. Sitten tulee funktion nimi ja sitten sulut. Aaltosulkuihin tulee mitä funktio tekee.
 

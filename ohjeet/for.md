@@ -12,4 +12,4 @@ $$$for/main.go$$$
 
 ## Kokeile itse
 - Laske yhteen luvut sadasta tuhanteen
-- Kirjoita ruudulle teksti "kirjoittaminen on tylsää" sata kertaa
+- Näytä kaikki sataa pienemmät *neliöt* (neliö on luku kerrottuna itsellään)

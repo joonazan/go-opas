@@ -27,7 +27,7 @@ Säädä ympäristömuuttujat graafisella työkalulla tai aja järjestelmävalvo
 setx GOPATH C:\\Users\Public\go
 setx PATH "C:\\Users\Public\go\bin"
 ```
-Voit tietenkin käyttää jotain muuta kansiota kuin `C:\\Users\Public\go`:n sijaan, kunhan kansiota pystyy muokkaamaan ilman järjestelmävalvojaoikeuksia.
+Voit tietenkin käyttää jotain muuta kansiota kuin `C:\\Users\Public\go`, kunhan kansiota pystyy muokkaamaan ilman järjestelmävalvojaoikeuksia.
 
 ## Linux, ohjeet tehty Arch Linuxille
 
