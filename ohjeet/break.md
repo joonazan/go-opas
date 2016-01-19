@@ -20,3 +20,10 @@ Tämä on 5/5 ohjelma. Suosittelen lämpimästi.
 $$$break/main.go$$$
 
 Muut tavat päästä ulos silmukasta ovat `return`, `goto` ja paniikki.
+
+## Kokeile itse
+
+Tee ohjelma, joka loppuu kun sille kirjoittaa hei käyttäen breakkia.
+Tässä on sellainen kirjoitettuna ilman breakkia:
+
+$$$vaatii_tervehdyksen/main.go$$$
