@@ -1,7 +1,6 @@
 package main
 
 import (
-	gfm "github.com/shurcooL/github_flavored_markdown"
 	"io/ioutil"
 	"net/http"
 )
@@ -17,7 +16,7 @@ func lisääOpetussivu(nimi string, tiedostopolku string) {
 		panic(err)
 	}
 
-	html := gfm.Markdown(tavut)
+	html := markdownHTMLläksi(tavut)
 
 	http.HandleFunc("/materiaali/"+nimi, func(w http.ResponseWriter, r *http.Request) {
 		w.Write(markdownsivunAlku)
