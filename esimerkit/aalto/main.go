@@ -16,7 +16,11 @@ func piirrä(aika float64) {
 
 	gl.Begin(gl.LINE_STRIP)
 
-	gl.Color3d(nollastaYhteen(aika*10), nollastaYhteen(aika*7), nollastaYhteen(aika*3))
+	gl.Color3d(
+		nollastaYhteen(aika*10),
+		nollastaYhteen(aika*7),
+		nollastaYhteen(aika*3),
+	)
 
 	for i := 0.0; i < pisteitä; i++ {
 
