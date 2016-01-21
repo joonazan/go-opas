@@ -1,29 +1,55 @@
 # Muuttujat
 
-Muuttujaan voi varastoida jotain. Koska eri asiat ovat eri kokoisia, muuttujaan voi varastoida vain yhden [tyyppisiä](tyypit.md) arvoja.
+Muuttujaan on nimetty pala tietokoneen muistia, jonne voi varastoida arvon.
 
->Mutta esimerkiksi `int8` ja `uint8` -tyyppiset arvothan ovat molemmat 8 bitin pituisia! Miksi niitä ei voi varastoida samaan muuttujaan? Koska silloin voisi tapahtua ikäviä vahinkoja. `0xFF`(kahdeksan ykkösbittiä) on -1 `int8`:na ja 255 `uint8`:na!
+Seuraava ohjelma laskee hyvin yksinkertaisen laskun: kun tiedetään A0-arkin koko, minkä kokoinen A1-paperiarkki on?
 
-Muuttujan voi määritellä laittamalla ensin avainsanan `var`, sitten muuttujan nimen ja lopulta muttujan tyypin. Tällöin muuttujan arvo on kyseisen tyypin [_nolla-arvo_](nollaarvo.md).
+![Kuva paperikoista](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/A_size_illustration.svg/444px-A_size_illustration.svg.png)
+
+$$$var/main.go$$$
+
+`:=` luo uuden muuttujan. `=` vaihtaa muuttujan arvoa.
+
+## Miksi `:=`? Eikö sekin voisi olla `=`?
+
+Koska muuten voisi vahingossa kirjoittaa vaikka `levyes` ja ohjelma toimisi väärin ilman mitään näkyvää syytä.
+
+## Mitä varten muuttuja `vanhaLeveys` on?
+
+Se on opettamassa miksi temppu, jonka näytän kohta, on kätevä. Kokeile vaihtaa se kohta koodista tähän:
 
 ```Go
-var muuttuja int
+leveys = pituus / 2
+pituus = leveys
 ```
 
-Yleensä muuttujaan kuitenkin halutaan heti varastoida jotain.
+Nyt ohjelmasta tulee ulos aivan muuta kuin pitäisi. Mieti hetken miksi. Jos et keksi, keskustele asiasta jonkun kanssa.
 
 ```Go
-silmien_määrä := 2
+pituus, leveys = leveys, pituus / 2
 ```
 
-Muuttujan arvoa voi käyttää yksinkertaisesti kirjoittamalla sen nimen.
+Tämä on se temppu, josta puhuin.
+
+## Kokeile itse
+- Kun olet opetellut for-silmukan, muuta ohjelma laskemaan kaikki paperikoot A8 asti.
+
+## Bonus: Tietyntyyppisen muuttujan tekeminen
+
+Jos haluat tehdä muuttujan, joka varastoi tietynlaisia arvoja, mutta et välitä siitä, mitä se aluksi sisältää, voit luoda sen hyvin virallisin elkein:
 
 ```Go
-fmt.Println(silmien_määrä)
+var luku int
 ```
 
-Muuttujan nimi tulee siitä, että sitä voi muuttaa sijoittamalla siihen uuden arvon.
+Tuo koodi tekee itse asiassa täsmälleen saman asian kuin tämä:
 
 ```Go
-silmien_määrä = 3
+luku := 0
+```
+
+Tarkemmankin tyypin saa määrättyä käyttäen `:=`-merkintää. Siksi `var nimi tyyppi`-merkintää näkee melko harvoin.
+
+```Go
+luku := uint8(0)
 ```
