@@ -23,7 +23,7 @@ go install github.com/joonazan/go-opas/esimerkit/aalto && aalto
 Saat haettua netistä uusimman version kaikista esimerkkikoodeista komennolla
 
 ```sh
-go get -du github.com/joonazan/go-opas/esimerkit/...
+go get -d -u github.com/joonazan/go-opas/esimerkit/...
 ```
 
 Esimerkkikoodit kertovat mistä ne löytyvät. Esimerkiksi tällä sivulla olevan koodin alapuolella lukee _../esimerkit/aalto/main.go_. Paketin nimi on siis `github.com/joonazan/go-opas/esimerkit/aalto/`.
