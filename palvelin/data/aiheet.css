@@ -1,0 +1,22 @@
+.tila0 {
+	background-color: gray;
+}
+.tila1 {
+	background-color: green;
+}
+.tila2 {
+	background-color: yellow;
+}
+.tila0 > .nappula0 {
+	visibility: hidden;
+}
+.tila1 > .nappula1 {
+	visibility: hidden;
+}
+.tila2 > .nappula2 {
+	visibility: hidden;
+}
+
+.esitiedetty{
+	color: green;
+}

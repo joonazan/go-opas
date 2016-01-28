@@ -3,6 +3,7 @@ package main
 import (
 	"io/ioutil"
 	"net/http"
+	"path/filepath"
 )
 
 var (
@@ -37,13 +38,20 @@ func lisääKuva(nimi string, tiedostopolku string) {
 }
 
 func init() {
-	tavut, err := ioutil.ReadFile("data/ohje.css")
+	const stylefolder = "data/"
+	polut, err := filepath.Glob(stylefolder + "*.css")
 	if err != nil {
 		panic(err)
 	}
+	for _, polku := range polut {
+		tavut, err := ioutil.ReadFile(polku)
+		if err != nil {
+			panic(err)
+		}
 
-	http.HandleFunc("/static/ohje.css", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "text/css")
-		w.Write(tavut)
-	})
+		http.HandleFunc("/static/"+filepath.Base(polku), func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Content-Type", "text/css")
+			w.Write(tavut)
+		})
+	}
 }
