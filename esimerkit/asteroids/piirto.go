@@ -24,18 +24,39 @@ func (p Peli) Piirrä() {
 		muunnos := vec2.Rotation(p.kulmat[muoto.Id]).Mul(muoto.Muunnos)
 		muunnos = vec2.Translation(p.paikat[muoto.Id]).Mul(muunnos)
 
-		gl.Begin(gl.LINE_STRIP)
-		for _, piste := range muoto.Pisteet {
-			var w [3]float32
-			for c := range w {
+		verteksit := make([]verteksi, len(muoto.Pisteet))
+
+		for i, piste := range muoto.Pisteet {
+			for c := 0; c < 3; c++ {
 				x := rand.Float32()
-				w[c] = muoto.Väriskeema.min[c]*x + muoto.Väriskeema.max[c]*(1-x)
+				verteksit[i].väri[c] = muoto.Väriskeema.min[c]*x + muoto.Väriskeema.max[c]*(1-x)
 			}
-			gl.Color3f(w[0], w[1], w[2])
-			piirräPiste(muunnos.Transform(piste))
+			verteksit[i].piste = muunnos.Transform(piste)
 		}
-		gl.End()
+
+		for _, siirto := range []vec2.Vector{{0, 0}, {0, 2}, {0, -2}, {2, 0}, {-2, 0}} {
+			piirräVerteksitSiirrolla(verteksit, siirto)
+		}
 	}
+}
+
+func piirräVerteksitSiirrolla(verteksit []verteksi, siirto vec2.Vector) {
+	gl.Begin(gl.LINE_STRIP)
+	for _, v := range verteksit {
+		v.piste.Add(siirto)
+		v.Piirrä()
+	}
+	gl.End()
+}
+
+type verteksi struct {
+	piste vec2.Vector
+	väri  [3]float32
+}
+
+func (v verteksi) Piirrä() {
+	gl.Color3f(v.väri[0], v.väri[1], v.väri[2])
+	piirräPiste(v.piste)
 }
 
 func piirräPiste(v vec2.Vector) {
