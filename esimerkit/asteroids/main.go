@@ -7,6 +7,7 @@ func main() {
 
 	peli := Peli{}
 	peli.TeeAlus()
+	peli.TeeAsteroidi()
 
 	edellinen_aika := 0.0
 	closedgl.RunInWindow(func(aika float64) {
