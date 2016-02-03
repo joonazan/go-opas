@@ -38,7 +38,7 @@ func init() {
 			}
 			edistyminen.RUnlock()
 
-			line := fmt.Sprintf("%s tehty: %d aloitettu: %d", email, tilalaskuri[Tehty], tilalaskuri[Aloitettu])
+			line := fmt.Sprintf("%s tehty: %d aloitettu: %d\n", email, tilalaskuri[Tehty], tilalaskuri[Aloitettu])
 			w.Write([]byte(line))
 		}
 	})
