@@ -17,14 +17,6 @@ func (p *Peli) TeeAlus() {
 	p.muunnokset = append(p.muunnokset, vec2.Matrix{})
 }
 
-type Ohjaimet struct {
-
-	// 1 on vasemmalle, -1 on oikealle
-	Ratti float64
-
-	Kaasu bool
-}
-
 func (p *Peli) PäivitäAlus(dt float64, ohjaimet Ohjaimet) {
 
 	const (

@@ -1,9 +1,6 @@
 package main
 
-import (
-	"github.com/go-gl/glfw/v3.1/glfw"
-	"github.com/joonazan/closedgl"
-)
+import "github.com/joonazan/closedgl"
 
 func main() {
 	ikkuna := closedgl.NewWindow(640, 640, "Asteroids")
@@ -20,18 +17,4 @@ func main() {
 		peli.Päivitä(dt, painalluksetOhjaimiksi(ikkuna))
 		peli.Piirrä()
 	}, ikkuna)
-}
-
-func painalluksetOhjaimiksi(ikkuna *glfw.Window) (ohjaimet Ohjaimet) {
-
-	ohjaimet.Kaasu = ikkuna.GetKey(glfw.KeyUp) == glfw.Press
-
-	if ikkuna.GetKey(glfw.KeyLeft) == glfw.Press {
-		ohjaimet.Ratti += 1
-	}
-	if ikkuna.GetKey(glfw.KeyRight) == glfw.Press {
-		ohjaimet.Ratti -= 1
-	}
-
-	return
 }
