@@ -16,17 +16,17 @@ func (p *Peli) TeeAlus() {
 	kolmio := []vec2.Vector{{0.1, 0}, {-0.1, 0}, {0, 0.2}, {0.1, 0}}
 
 	p.muodot = append(p.muodot, Muoto{
-		Id:         p.alus,
-		Pisteet:    kolmio,
-		Väriskeema: Väriväli{[3]float32{1, 1, 1}, [3]float32{1, 1, 1}},
-		Muunnos:    vec2.Translation(vec2.Vector{0, -0.06}),
+		Id:      p.alus,
+		Pisteet: kolmio,
+		Väri:    Väri{1, 1, 1},
+		Muunnos: vec2.Translation(vec2.Vector{0, -0.06}),
 	})
 
 	p.muodot = append(p.muodot, Muoto{
-		Id:         p.alus,
-		Pisteet:    kolmio,
-		Väriskeema: Väriväli{[3]float32{0, 0, 0}, [3]float32{1, 0.7, 0.3}},
-		Muunnos:    vec2.Translation(vec2.Vector{0, -0.09}).Mul(vec2.Scale(0.4, 0.4).Mul(vec2.Rotation(math.Pi))),
+		Id:      p.alus,
+		Pisteet: kolmio,
+		Väri:    Väri{1, 0.7, 0.3},
+		Muunnos: vec2.Translation(vec2.Vector{0, -0.09}).Mul(vec2.Scale(0.4, 0.4).Mul(vec2.Rotation(math.Pi))),
 	})
 }
 

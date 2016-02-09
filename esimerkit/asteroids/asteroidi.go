@@ -24,8 +24,8 @@ func (p *Peli) TeeAsteroidi() {
 			{-0.8, 0},
 			{0, 0},
 		},
-		Väriskeema: Väriväli{[3]float32{1, 1, 1}, [3]float32{1, 1, 1}},
-		Muunnos:    vec2.Scale(0.1, 0.1).Mul(vec2.Translation(vec2.Vector{1, -1.5})),
+		Väri:    Väri{1, 1, 1},
+		Muunnos: vec2.Scale(0.1, 0.1).Mul(vec2.Translation(vec2.Vector{1, -1.5})),
 	})
 
 	p.pyörimiset = append(p.pyörimiset, Pyöriminen{id, 0.5})
