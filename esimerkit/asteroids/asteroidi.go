@@ -4,11 +4,8 @@ import "github.com/joonazan/vec2"
 
 func TeeAsteroidi() {
 
-	id := len(paikat)
+	id := TeeEsine(vec2.Vector{0, 1}, vec2.Vector{1, 0.1}, 0)
 
-	nopeudet = append(nopeudet, vec2.Vector{1, 0.1})
-	paikat = append(paikat, vec2.Vector{1, 1})
-	kulmat = append(kulmat, 0)
 	muodot = append(muodot, Muoto{
 		ID: id,
 		Pisteet: []vec2.Vector{

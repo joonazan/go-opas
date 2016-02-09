@@ -6,12 +6,29 @@ var (
 	paikat, nopeudet []vec2.Vector
 	kulmat           []float64
 
+	vapaatIDt []int
+
 	pyörimiset []Pyöriminen
 )
 
 type Pyöriminen struct {
 	Id     int
 	Nopeus float64
+}
+
+func TeeEsine(paikka, nopeus vec2.Vector, kulma float64) (id int) {
+	if len(vapaatIDt) == 0 {
+		id = len(paikat)
+		paikat = append(paikat, paikka)
+		nopeudet = append(nopeudet, nopeus)
+		kulmat = append(kulmat, kulma)
+	} else {
+		id = vapaatIDt[len(vapaatIDt)-1]
+		paikat[id] = paikka
+		nopeudet[id] = nopeus
+		kulmat[id] = kulma
+	}
+	return
 }
 
 func Päivitä(dt float64, ohjaimet Ohjaimet) {

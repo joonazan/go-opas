@@ -22,11 +22,7 @@ var Liekki = Muoto{
 }
 
 func TeeAlus() {
-	alus.ID = len(paikat)
-
-	paikat = append(paikat, vec2.Vector{})
-	nopeudet = append(nopeudet, vec2.Vector{})
-	kulmat = append(kulmat, 0)
+	alus.ID = TeeEsine(vec2.Vector{}, vec2.Vector{}, 0)
 
 	muodot = append(muodot, Muoto{
 		ID:      alus.ID,
@@ -58,4 +54,21 @@ func PäivitäAlus(dt float64, ohjaimet Ohjaimet) {
 	} else {
 		muodot[alus.LiekinID] = Muoto{}
 	}
+
+	if ohjaimet.Liipaisin {
+		TeeLuoti(alus.ID)
+	}
+}
+
+func TeeLuoti(alusID int) {
+	aluksenRotaatio := vec2.Rotation(kulmat[alusID])
+	keulanSuunta := aluksenRotaatio.Transform(vec2.Vector{0, 1})
+	id := TeeEsine(paikat[alusID], keulanSuunta.Plus(nopeudet[alusID]), 0)
+
+	muodot = append(muodot, Muoto{
+		ID:      id,
+		Pisteet: []vec2.Vector{{0, 0}, {0, 0.01}},
+		Väri:    Väri{1, 1, 1},
+		Muunnos: aluksenRotaatio,
+	})
 }

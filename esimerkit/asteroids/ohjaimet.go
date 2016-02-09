@@ -7,12 +7,13 @@ type Ohjaimet struct {
 	// 1 on vasemmalle, -1 on oikealle
 	Ratti float64
 
-	Kaasu bool
+	Kaasu, Liipaisin bool
 }
 
 func painalluksetOhjaimiksi(ikkuna *glfw.Window) (ohjaimet Ohjaimet) {
 
 	ohjaimet.Kaasu = ikkuna.GetKey(glfw.KeyUp) == glfw.Press
+	ohjaimet.Liipaisin = ikkuna.GetKey(glfw.KeySpace) == glfw.Press
 
 	if ikkuna.GetKey(glfw.KeyLeft) == glfw.Press {
 		ohjaimet.Ratti += 1
