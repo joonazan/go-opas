@@ -23,16 +23,14 @@ var Liekki = Muoto{
 func TeeAlus() {
 	alus.ID = TeeEsine(vec2.Vector{}, vec2.Vector{}, 0)
 
-	id := muodolle.Varaa()
-	muotojenHuoltajat[id] = alus.ID
+	id := muodolle.Varaa(alus.ID)
 	muodot[id] = Muoto{
 		Pisteet: kolmionPisteet,
 		Väri:    Väri{1, 1, 1},
 		Muunnos: vec2.Translation(vec2.Vector{0, -0.06}),
 	}
 
-	alus.LiekinID = muodolle.Varaa()
-	muotojenHuoltajat[alus.LiekinID] = alus.ID
+	alus.LiekinID = muodolle.Varaa(alus.ID)
 }
 
 func PäivitäAlus(dt float64, ohjaimet Ohjaimet) {
@@ -65,14 +63,12 @@ func TeeLuoti(alusID int) {
 	keulanSuunta := aluksenRotaatio.Transform(vec2.Vector{0, 1})
 	id := TeeEsine(paikat[alusID], keulanSuunta.Plus(nopeudet[alusID]), 0)
 
-	mid := muodolle.Varaa()
-	muotojenHuoltajat[mid] = id
+	mid := muodolle.Varaa(id)
 	muodot[mid] = Muoto{
 		Pisteet: []vec2.Vector{{0, 0}, {0, 0.01}},
 		Väri:    Väri{1, 1, 1},
 		Muunnos: aluksenRotaatio,
 	}
-	eliniät = append(eliniät, struct {
-		jäljellä, ID int
-	}{60, id})
+
+	eliniät[eliniälle.Varaa(id)] = 60
 }

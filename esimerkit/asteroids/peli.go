@@ -1,6 +1,8 @@
 package main
 
-import "github.com/joonazan/vec2"
+import (
+	"github.com/joonazan/vec2"
+)
 
 var (
 	paikat, nopeudet []vec2.Vector
@@ -10,10 +12,11 @@ var (
 
 	kuolleetIDt []int
 
-	pyörimiset []Pyöriminen
-	eliniät    []struct {
-		jäljellä, ID int
-	}
+	pyörimiset   []float64
+	pyörimiselle = UusiKomponentti(&pyörimiset)
+
+	eliniät   []int
+	eliniälle = UusiKomponentti(&eliniät)
 )
 
 func Tapa(id int) {
@@ -47,18 +50,20 @@ func Päivitä(dt float64, ohjaimet Ohjaimet) {
 
 	PäivitäAlus(dt, ohjaimet)
 
-	for _, p := range pyörimiset {
-		kulmat[p.Id] += p.Nopeus * dt
+	for i, p := range pyörimiset {
+		kulmat[pyörimiselle.Huoltajat[i]] += p * dt
 	}
 
 	for i, e := range eliniät {
-		if e.jäljellä == 0 {
-			Tapa(e.ID)
+		if e == 1 {
+			Tapa(eliniälle.Huoltajat[i])
 		}
-		eliniät[i].jäljellä--
+		eliniät[i]--
 	}
 
-	PoistaKuolleet(muotojenHuoltajat, kuolleetIDt, muodolle)
+	muodolle.PoistaKuolleet(kuolleetIDt)
+	pyörimiselle.PoistaKuolleet(kuolleetIDt)
+	eliniälle.PoistaKuolleet(kuolleetIDt)
 
 	for _, id := range kuolleetIDt {
 		kierrättäjä.Vapauta(id)

@@ -6,10 +6,9 @@ import (
 )
 
 var (
-	muotojenHuoltajat []int
-	muodot            []Muoto
+	muodot []Muoto
 
-	muodolle = UusiKierrättäjä(&muotojenHuoltajat, &muodot)
+	muodolle = UusiKomponentti(&muodot)
 )
 
 type Muoto struct {
@@ -22,8 +21,8 @@ type Väri [3]float32
 func Piirrä() {
 	for i, muoto := range muodot {
 
-		muunnos := vec2.Rotation(kulmat[muotojenHuoltajat[i]]).Mul(muoto.Muunnos)
-		muunnos = vec2.Translation(paikat[muotojenHuoltajat[i]]).Mul(muunnos)
+		muunnos := vec2.Rotation(kulmat[muodolle.Huoltajat[i]]).Mul(muoto.Muunnos)
+		muunnos = vec2.Translation(paikat[muodolle.Huoltajat[i]]).Mul(muunnos)
 
 		muunnetutPisteet := make([]vec2.Vector, len(muoto.Pisteet))
 		for j, piste := range muoto.Pisteet {

@@ -6,8 +6,7 @@ func TeeAsteroidi() {
 
 	id := TeeEsine(vec2.Vector{0, 1}, vec2.Vector{1, 0.1}, 0)
 
-	mid := muodolle.Varaa()
-	muotojenHuoltajat[mid] = id
+	mid := muodolle.Varaa(id)
 	muodot[mid] = Muoto{
 		Pisteet: []vec2.Vector{
 			{0, 0},
@@ -26,5 +25,5 @@ func TeeAsteroidi() {
 		Muunnos: vec2.Scale(0.1, 0.1).Mul(vec2.Translation(vec2.Vector{1, -1.5})),
 	}
 
-	pyörimiset = append(pyörimiset, Pyöriminen{id, 0.5})
+	pyörimiset[pyörimiselle.Varaa(id)] = 0.5
 }

@@ -2,7 +2,7 @@ package main
 
 import "reflect"
 
-func PoistaKuolleet(huoltajat, kuolleet []int, kierrättäjä *Kierrättäjä) {
+func PoistaKuolleet(huoltajat, kuolleet []int, kierrättäjä Kierrättäjä) {
 	for i, h := range huoltajat {
 		for _, kuollut := range kuolleet {
 			if h == kuollut {
@@ -10,6 +10,27 @@ func PoistaKuolleet(huoltajat, kuolleet []int, kierrättäjä *Kierrättäjä) {
 			}
 		}
 	}
+}
+
+type Komponentti struct {
+	Kierrättäjä
+	Huoltajat []int
+}
+
+func UusiKomponentti(viipaleet ...interface{}) *Komponentti {
+	k := new(Komponentti)
+	k.Kierrättäjä = *UusiKierrättäjä(append(viipaleet, &k.Huoltajat)...)
+	return k
+}
+
+func (k *Komponentti) Varaa(huoltaja int) (id int) {
+	id = k.Kierrättäjä.Varaa()
+	k.Huoltajat[id] = huoltaja
+	return
+}
+
+func (k *Komponentti) PoistaKuolleet(kuolleetHuoltajat []int) {
+	PoistaKuolleet(k.Huoltajat, kuolleetHuoltajat, k.Kierrättäjä)
 }
 
 type Kierrättäjä struct {
