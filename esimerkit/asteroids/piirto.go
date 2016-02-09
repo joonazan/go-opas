@@ -5,6 +5,8 @@ import (
 	"github.com/joonazan/vec2"
 )
 
+var muodot []Muoto
+
 type Muoto struct {
 	Id int
 
@@ -12,19 +14,18 @@ type Muoto struct {
 	Muunnos vec2.Matrix
 	Väri    Väri
 }
-
 type Väri [3]float32
 
-func (p Peli) Piirrä() {
-	for _, muoto := range p.muodot {
-		p.PiirräMuoto(muoto)
+func Piirrä() {
+	for _, muoto := range muodot {
+		PiirräMuoto(muoto)
 	}
 }
 
-func (p Peli) PiirräMuoto(muoto Muoto) {
+func PiirräMuoto(muoto Muoto) {
 
-	muunnos := vec2.Rotation(p.kulmat[muoto.Id]).Mul(muoto.Muunnos)
-	muunnos = vec2.Translation(p.paikat[muoto.Id]).Mul(muunnos)
+	muunnos := vec2.Rotation(kulmat[muoto.Id]).Mul(muoto.Muunnos)
+	muunnos = vec2.Translation(paikat[muoto.Id]).Mul(muunnos)
 
 	muunnetutPisteet := make([]vec2.Vector, len(muoto.Pisteet))
 	for i, piste := range muoto.Pisteet {

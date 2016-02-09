@@ -2,14 +2,14 @@ package main
 
 import "github.com/joonazan/vec2"
 
-func (p *Peli) TeeAsteroidi() {
+func TeeAsteroidi() {
 
-	id := len(p.paikat)
+	id := len(paikat)
 
-	p.nopeudet = append(p.nopeudet, vec2.Vector{1, 0.1})
-	p.paikat = append(p.paikat, vec2.Vector{1, 1})
-	p.kulmat = append(p.kulmat, 0)
-	p.muodot = append(p.muodot, Muoto{
+	nopeudet = append(nopeudet, vec2.Vector{1, 0.1})
+	paikat = append(paikat, vec2.Vector{1, 1})
+	kulmat = append(kulmat, 0)
+	muodot = append(muodot, Muoto{
 		Id: id,
 		Pisteet: []vec2.Vector{
 			{0, 0},
@@ -28,5 +28,5 @@ func (p *Peli) TeeAsteroidi() {
 		Muunnos: vec2.Scale(0.1, 0.1).Mul(vec2.Translation(vec2.Vector{1, -1.5})),
 	})
 
-	p.pyörimiset = append(p.pyörimiset, Pyöriminen{id, 0.5})
+	pyörimiset = append(pyörimiset, Pyöriminen{id, 0.5})
 }

@@ -2,36 +2,32 @@ package main
 
 import "github.com/joonazan/vec2"
 
-type Peli struct {
+var (
 	paikat, nopeudet []vec2.Vector
-
-	kulmat []float64
-	muodot []Muoto
+	kulmat           []float64
 
 	pyörimiset []Pyöriminen
-
-	alus int
-}
+)
 
 type Pyöriminen struct {
 	Id     int
 	Nopeus float64
 }
 
-func (peli *Peli) Päivitä(dt float64, ohjaimet Ohjaimet) {
+func Päivitä(dt float64, ohjaimet Ohjaimet) {
 
-	for i := range peli.nopeudet {
-		peli.paikat[i] = peli.paikat[i].Plus(peli.nopeudet[i].Times(dt))
+	for i := range nopeudet {
+		paikat[i] = paikat[i].Plus(nopeudet[i].Times(dt))
 	}
 
-	for i, paikka := range peli.paikat {
-		peli.paikat[i] = wrapVector(paikka)
+	for i, paikka := range paikat {
+		paikat[i] = wrapVector(paikka)
 	}
 
-	peli.PäivitäAlus(dt, ohjaimet)
+	PäivitäAlus(dt, ohjaimet)
 
-	for _, p := range peli.pyörimiset {
-		peli.kulmat[p.Id] += p.Nopeus * dt
+	for _, p := range pyörimiset {
+		kulmat[p.Id] += p.Nopeus * dt
 	}
 }
 
