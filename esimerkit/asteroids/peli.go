@@ -6,10 +6,19 @@ var (
 	paikat, nopeudet []vec2.Vector
 	kulmat           []float64
 
-	vapaatIDt []int
+	kierrättäjä = UusiKierrättäjä(&paikat, &nopeudet, &kulmat)
+
+	kuolleetIDt []int
 
 	pyörimiset []Pyöriminen
+	eliniät    []struct {
+		jäljellä, ID int
+	}
 )
+
+func Tapa(id int) {
+	kuolleetIDt = append(kuolleetIDt, id)
+}
 
 type Pyöriminen struct {
 	Id     int
@@ -17,17 +26,12 @@ type Pyöriminen struct {
 }
 
 func TeeEsine(paikka, nopeus vec2.Vector, kulma float64) (id int) {
-	if len(vapaatIDt) == 0 {
-		id = len(paikat)
-		paikat = append(paikat, paikka)
-		nopeudet = append(nopeudet, nopeus)
-		kulmat = append(kulmat, kulma)
-	} else {
-		id = vapaatIDt[len(vapaatIDt)-1]
-		paikat[id] = paikka
-		nopeudet[id] = nopeus
-		kulmat[id] = kulma
-	}
+
+	id = kierrättäjä.Varaa()
+
+	paikat[id] = paikka
+	nopeudet[id] = nopeus
+	kulmat[id] = kulma
 	return
 }
 
@@ -46,6 +50,20 @@ func Päivitä(dt float64, ohjaimet Ohjaimet) {
 	for _, p := range pyörimiset {
 		kulmat[p.Id] += p.Nopeus * dt
 	}
+
+	for i, e := range eliniät {
+		if e.jäljellä == 0 {
+			Tapa(e.ID)
+		}
+		eliniät[i].jäljellä--
+	}
+
+	PoistaKuolleet(muotojenHuoltajat, kuolleetIDt, muodolle)
+
+	for _, id := range kuolleetIDt {
+		kierrättäjä.Vapauta(id)
+	}
+	kuolleetIDt = kuolleetIDt[:0]
 }
 
 func wrapVector(v vec2.Vector) vec2.Vector {

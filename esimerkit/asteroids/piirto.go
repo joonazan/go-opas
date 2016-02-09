@@ -5,11 +5,14 @@ import (
 	"github.com/joonazan/vec2"
 )
 
-var muodot []Muoto
+var (
+	muotojenHuoltajat []int
+	muodot            []Muoto
+
+	muodolle = UusiKierrättäjä(&muotojenHuoltajat, &muodot)
+)
 
 type Muoto struct {
-	ID int
-
 	Pisteet []vec2.Vector
 	Muunnos vec2.Matrix
 	Väri    Väri
@@ -17,24 +20,20 @@ type Muoto struct {
 type Väri [3]float32
 
 func Piirrä() {
-	for _, muoto := range muodot {
-		PiirräMuoto(muoto)
-	}
-}
+	for i, muoto := range muodot {
 
-func PiirräMuoto(muoto Muoto) {
+		muunnos := vec2.Rotation(kulmat[muotojenHuoltajat[i]]).Mul(muoto.Muunnos)
+		muunnos = vec2.Translation(paikat[muotojenHuoltajat[i]]).Mul(muunnos)
 
-	muunnos := vec2.Rotation(kulmat[muoto.ID]).Mul(muoto.Muunnos)
-	muunnos = vec2.Translation(paikat[muoto.ID]).Mul(muunnos)
+		muunnetutPisteet := make([]vec2.Vector, len(muoto.Pisteet))
+		for j, piste := range muoto.Pisteet {
+			muunnetutPisteet[j] = muunnos.Transform(piste)
+		}
 
-	muunnetutPisteet := make([]vec2.Vector, len(muoto.Pisteet))
-	for i, piste := range muoto.Pisteet {
-		muunnetutPisteet[i] = muunnos.Transform(piste)
-	}
-
-	asetaVäri(muoto.Väri)
-	for _, siirto := range []vec2.Vector{{0, 0}, {0, 2}, {0, -2}, {2, 0}, {-2, 0}} {
-		piirräPisteetSiirrolla(muunnetutPisteet, siirto)
+		asetaVäri(muoto.Väri)
+		for _, siirto := range []vec2.Vector{{0, 0}, {0, 2}, {0, -2}, {2, 0}, {-2, 0}} {
+			piirräPisteetSiirrolla(muunnetutPisteet, siirto)
+		}
 	}
 }
 

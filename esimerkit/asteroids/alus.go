@@ -15,7 +15,6 @@ type Alus struct {
 var kolmionPisteet = []vec2.Vector{{0.1, 0}, {-0.1, 0}, {0, 0.2}, {0.1, 0}}
 
 var Liekki = Muoto{
-	ID:      alus.ID,
 	Pisteet: kolmionPisteet,
 	Väri:    Väri{1, 0.7, 0.3},
 	Muunnos: vec2.Translation(vec2.Vector{0, -0.09}).Mul(vec2.Scale(0.4, 0.4).Mul(vec2.Rotation(math.Pi))),
@@ -24,15 +23,16 @@ var Liekki = Muoto{
 func TeeAlus() {
 	alus.ID = TeeEsine(vec2.Vector{}, vec2.Vector{}, 0)
 
-	muodot = append(muodot, Muoto{
-		ID:      alus.ID,
+	id := muodolle.Varaa()
+	muotojenHuoltajat[id] = alus.ID
+	muodot[id] = Muoto{
 		Pisteet: kolmionPisteet,
 		Väri:    Väri{1, 1, 1},
 		Muunnos: vec2.Translation(vec2.Vector{0, -0.06}),
-	})
+	}
 
-	alus.LiekinID = len(muodot)
-	muodot = append(muodot, Muoto{})
+	alus.LiekinID = muodolle.Varaa()
+	muotojenHuoltajat[alus.LiekinID] = alus.ID
 }
 
 func PäivitäAlus(dt float64, ohjaimet Ohjaimet) {
@@ -65,10 +65,14 @@ func TeeLuoti(alusID int) {
 	keulanSuunta := aluksenRotaatio.Transform(vec2.Vector{0, 1})
 	id := TeeEsine(paikat[alusID], keulanSuunta.Plus(nopeudet[alusID]), 0)
 
-	muodot = append(muodot, Muoto{
-		ID:      id,
+	mid := muodolle.Varaa()
+	muotojenHuoltajat[mid] = id
+	muodot[mid] = Muoto{
 		Pisteet: []vec2.Vector{{0, 0}, {0, 0.01}},
 		Väri:    Väri{1, 1, 1},
 		Muunnos: aluksenRotaatio,
-	})
+	}
+	eliniät = append(eliniät, struct {
+		jäljellä, ID int
+	}{60, id})
 }
