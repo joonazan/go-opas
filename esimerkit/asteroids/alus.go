@@ -8,35 +8,35 @@ import (
 var alus Alus
 
 type Alus struct {
-	Id     int
-	Liekki int
+	ID       int
+	LiekinID int
+}
+
+var kolmionPisteet = []vec2.Vector{{0.1, 0}, {-0.1, 0}, {0, 0.2}, {0.1, 0}}
+
+var Liekki = Muoto{
+	ID:      alus.ID,
+	Pisteet: kolmionPisteet,
+	Väri:    Väri{1, 0.7, 0.3},
+	Muunnos: vec2.Translation(vec2.Vector{0, -0.09}).Mul(vec2.Scale(0.4, 0.4).Mul(vec2.Rotation(math.Pi))),
 }
 
 func TeeAlus() {
-
-	alus.Id = len(paikat)
+	alus.ID = len(paikat)
 
 	paikat = append(paikat, vec2.Vector{})
 	nopeudet = append(nopeudet, vec2.Vector{})
 	kulmat = append(kulmat, 0)
 
-	kolmio := []vec2.Vector{{0.1, 0}, {-0.1, 0}, {0, 0.2}, {0.1, 0}}
-
 	muodot = append(muodot, Muoto{
-		Id:      alus.Id,
-		Pisteet: kolmio,
+		ID:      alus.ID,
+		Pisteet: kolmionPisteet,
 		Väri:    Väri{1, 1, 1},
 		Muunnos: vec2.Translation(vec2.Vector{0, -0.06}),
 	})
 
-	alus.Liekki = len(muodot)
-	liekki := Muoto{
-		Id:      alus.Id,
-		Pisteet: kolmio,
-		Väri:    Väri{1, 0.7, 0.3},
-		Muunnos: vec2.Translation(vec2.Vector{0, -0.09}).Mul(vec2.Scale(0.4, 0.4).Mul(vec2.Rotation(math.Pi))),
-	}
-	muodot = append(muodot, liekki)
+	alus.LiekinID = len(muodot)
+	muodot = append(muodot, Muoto{})
 }
 
 func PäivitäAlus(dt float64, ohjaimet Ohjaimet) {
@@ -46,12 +46,16 @@ func PäivitäAlus(dt float64, ohjaimet Ohjaimet) {
 		ratinVahvuus     = 4
 	)
 
-	kulmat[alus.Id] += ohjaimet.Ratti * ratinVahvuus * dt
+	kulmat[alus.ID] += ohjaimet.Ratti * ratinVahvuus * dt
 
 	if ohjaimet.Kaasu {
-		muutos := vec2.Rotation(kulmat[alus.Id]).Transform(vec2.Vector{0, moottorinVahvuus * dt})
+		muutos := vec2.Rotation(kulmat[alus.ID]).Transform(vec2.Vector{0, moottorinVahvuus * dt})
 
-		nopeus := &nopeudet[alus.Id]
+		nopeus := &nopeudet[alus.ID]
 		*nopeus = nopeus.Plus(muutos)
+
+		muodot[alus.LiekinID] = Liekki
+	} else {
+		muodot[alus.LiekinID] = Muoto{}
 	}
 }

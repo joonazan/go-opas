@@ -10,7 +10,7 @@ func TeeAsteroidi() {
 	paikat = append(paikat, vec2.Vector{1, 1})
 	kulmat = append(kulmat, 0)
 	muodot = append(muodot, Muoto{
-		Id: id,
+		ID: id,
 		Pisteet: []vec2.Vector{
 			{0, 0},
 			{0.3, 2},

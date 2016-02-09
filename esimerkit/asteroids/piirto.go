@@ -8,7 +8,7 @@ import (
 var muodot []Muoto
 
 type Muoto struct {
-	Id int
+	ID int
 
 	Pisteet []vec2.Vector
 	Muunnos vec2.Matrix
@@ -24,8 +24,8 @@ func Piirrä() {
 
 func PiirräMuoto(muoto Muoto) {
 
-	muunnos := vec2.Rotation(kulmat[muoto.Id]).Mul(muoto.Muunnos)
-	muunnos = vec2.Translation(paikat[muoto.Id]).Mul(muunnos)
+	muunnos := vec2.Rotation(kulmat[muoto.ID]).Mul(muoto.Muunnos)
+	muunnos = vec2.Translation(paikat[muoto.ID]).Mul(muunnos)
 
 	muunnetutPisteet := make([]vec2.Vector, len(muoto.Pisteet))
 	for i, piste := range muoto.Pisteet {
