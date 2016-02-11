@@ -1,36 +1,56 @@
 package main
 
-import "reflect"
+import (
+	"reflect"
+)
 
-func PoistaKuolleet(huoltajat, kuolleet []int, kierrättäjä Kierrättäjä) {
-	for i, h := range huoltajat {
-		for _, kuollut := range kuolleet {
-			if h == kuollut {
-				kierrättäjä.Vapauta(i)
-			}
+type Maailma struct {
+	komponentit []*Komponentti
+}
+
+func (m *Maailma) LuoKomponentti(kuolleetVanhemmat *[]int, viipaleet ...interface{}) *Komponentti {
+	k := &Komponentti{}
+	k.Kierrättäjä = *UusiKierrättäjä(append(viipaleet, &k.Vanhemmat)...)
+	k.kuolleetVanhemmat = kuolleetVanhemmat
+
+	m.komponentit = append(m.komponentit, k)
+
+	return k
+}
+
+func (m *Maailma) VapautaKuolleet() {
+	for _, k := range m.komponentit {
+		k.TapaOrvot()
+	}
+
+	for _, k := range m.komponentit {
+		for _, kuollut := range k.Kuolleet {
+			k.Vapauta(kuollut)
 		}
+		k.Kuolleet = k.Kuolleet[:0]
 	}
 }
 
 type Komponentti struct {
 	Kierrättäjä
-	Huoltajat []int
+	kuolleetVanhemmat   *[]int
+	Vanhemmat, Kuolleet []int
 }
 
-func UusiKomponentti(viipaleet ...interface{}) *Komponentti {
-	k := new(Komponentti)
-	k.Kierrättäjä = *UusiKierrättäjä(append(viipaleet, &k.Huoltajat)...)
-	return k
-}
-
-func (k *Komponentti) Varaa(huoltaja int) (id int) {
+func (k *Komponentti) Varaa(vanhempi int) (id int) {
 	id = k.Kierrättäjä.Varaa()
-	k.Huoltajat[id] = huoltaja
+	k.Vanhemmat[id] = vanhempi
 	return
 }
 
-func (k *Komponentti) PoistaKuolleet(kuolleetHuoltajat []int) {
-	PoistaKuolleet(k.Huoltajat, kuolleetHuoltajat, k.Kierrättäjä)
+func (k *Komponentti) TapaOrvot() {
+	for i, v := range k.Vanhemmat {
+		for _, kuollut := range *k.kuolleetVanhemmat {
+			if v == kuollut {
+				k.Kuolleet = append(k.Kuolleet, i)
+			}
+		}
+	}
 }
 
 type Kierrättäjä struct {

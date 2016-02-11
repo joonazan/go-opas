@@ -5,6 +5,8 @@ import (
 )
 
 var (
+	maailma Maailma
+
 	paikat, nopeudet []vec2.Vector
 	kulmat           []float64
 
@@ -13,10 +15,10 @@ var (
 	kuolleetIDt []int
 
 	pyörimiset   []float64
-	pyörimiselle = UusiKomponentti(&pyörimiset)
+	pyörimiselle = maailma.LuoKomponentti(&kuolleetIDt, &pyörimiset)
 
 	eliniät   []int
-	eliniälle = UusiKomponentti(&eliniät)
+	eliniälle = maailma.LuoKomponentti(&kuolleetIDt, &eliniät)
 )
 
 func Tapa(id int) {
@@ -51,19 +53,19 @@ func Päivitä(dt float64, ohjaimet Ohjaimet) {
 	PäivitäAlus(dt, ohjaimet)
 
 	for i, p := range pyörimiset {
-		kulmat[pyörimiselle.Huoltajat[i]] += p * dt
+		kulmat[pyörimiselle.Vanhemmat[i]] += p * dt
 	}
 
 	for i, e := range eliniät {
 		if e == 1 {
-			Tapa(eliniälle.Huoltajat[i])
+			Tapa(eliniälle.Vanhemmat[i])
 		}
 		eliniät[i]--
 	}
 
-	muodolle.PoistaKuolleet(kuolleetIDt)
-	pyörimiselle.PoistaKuolleet(kuolleetIDt)
-	eliniälle.PoistaKuolleet(kuolleetIDt)
+	PäivitäDisko()
+
+	maailma.VapautaKuolleet()
 
 	for _, id := range kuolleetIDt {
 		kierrättäjä.Vapauta(id)
