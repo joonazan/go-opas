@@ -1,8 +1,6 @@
 package main
 
-import (
-	"github.com/joonazan/vec2"
-)
+import "github.com/joonazan/vec2"
 
 var (
 	maailma Maailma
@@ -17,7 +15,7 @@ var (
 	pyörimiset   []float64
 	pyörimiselle = maailma.LuoKomponentti(&kuolleetIDt, &pyörimiset)
 
-	eliniät   []int
+	eliniät   []float64
 	eliniälle = maailma.LuoKomponentti(&kuolleetIDt, &eliniät)
 )
 
@@ -57,10 +55,10 @@ func Päivitä(dt float64, ohjaimet Ohjaimet) {
 	}
 
 	for i, e := range eliniät {
-		if e == 1 {
+		if e > 0 && dt >= e {
 			Tapa(eliniälle.Vanhemmat[i])
 		}
-		eliniät[i]--
+		eliniät[i] -= dt
 	}
 
 	PäivitäDisko()
