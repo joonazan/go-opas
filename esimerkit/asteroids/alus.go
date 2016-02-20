@@ -1,15 +1,16 @@
 package main
 
 import (
-	"github.com/joonazan/vec2"
 	"math"
+
+	"github.com/joonazan/vec2"
 )
 
 var alus Alus
 
 type Alus struct {
-	ID       int
-	LiekinID int
+	ID, LiekinID           int
+	AikaAseenLaukeamisesta float64
 }
 
 var kolmionPisteet = []vec2.Vector{{0.1, 0}, {-0.1, 0}, {0, 0.2}, {0.1, 0}}
@@ -53,8 +54,10 @@ func PäivitäAlus(dt float64, ohjaimet Ohjaimet) {
 		muodot[alus.LiekinID] = Muoto{}
 	}
 
-	if ohjaimet.Liipaisin {
+	alus.AikaAseenLaukeamisesta += dt
+	if ohjaimet.Liipaisin && alus.AikaAseenLaukeamisesta > 0.4 {
 		TeeLuoti(alus.ID)
+		alus.AikaAseenLaukeamisesta = 0
 	}
 }
 
@@ -65,10 +68,10 @@ func TeeLuoti(alusID int) {
 
 	mid := muodolle.Varaa(id)
 	muodot[mid] = Muoto{
-		Pisteet: []vec2.Vector{{0, 0}, {0, 0.01}},
+		Pisteet: []vec2.Vector{{0, 0}, {0, 0.04}},
 		Väri:    Väri{1, 1, 1},
 		Muunnos: aluksenRotaatio,
 	}
 
-	eliniät[eliniälle.Varaa(id)] = 60
+	eliniät[eliniälle.Varaa(id)] = 1
 }
