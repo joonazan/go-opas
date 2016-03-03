@@ -38,7 +38,7 @@ func init() {
 		panic("En saanut ladattua tasoa: " + err.Error())
 	}
 
-	fmt.Fscan(file, &kartanLeveys, &kartanKorkeus)
+	fmt.Fscan(file, &kartanLeveys, &kartanKorkeus, &PelaajaX, &PelaajaY)
 
 	kartta = make([]Ruutu, kartanLeveys*kartanKorkeus)
 	for y := 0; y < kartanKorkeus; y++ {
