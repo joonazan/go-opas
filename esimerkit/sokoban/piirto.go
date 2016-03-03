@@ -42,6 +42,7 @@ func Piirrä() {
 		y := i / kartanLeveys
 		piirräRuutu(x, y, r)
 	}
+	piirräRuutu(PelaajaX, PelaajaY, Pelaaja)
 	gl.End()
 }
 
