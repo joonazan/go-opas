@@ -39,7 +39,7 @@ func Piirrä() {
 	gl.Begin(gl.QUADS)
 	for i, r := range kartta {
 		x := i % kartanLeveys
-		y := i % kartanKorkeus
+		y := i / kartanLeveys
 		piirräRuutu(x, y, r)
 	}
 	gl.End()
@@ -62,8 +62,8 @@ func piirräRuutu(x, y int, r Ruutu) {
 	gl.Vertex2f(left+sivu, top)
 
 	gl.TexCoord2f(texLoppu, 1)
-	gl.Vertex2f(left+sivu, top+sivu)
+	gl.Vertex2f(left+sivu, top-sivu)
 
 	gl.TexCoord2f(texAlku, 1)
-	gl.Vertex2f(left, top+sivu)
+	gl.Vertex2f(left, top-sivu)
 }
