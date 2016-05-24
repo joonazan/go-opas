@@ -5,11 +5,12 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 	"time"
 )
 
-const PalvelimenOsoite = "http://localhost:8080"
+const PalvelimenOsoite = "https://go-opas.herokuapp.com"
 
 func main() {
 
@@ -59,7 +60,7 @@ func main() {
 
 	edistymiset.TallennaVälein(time.Minute * 10)
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), nil))
 }
 
 func extractSetstatusArguments(r *http.Request) (aihe string, tila uint8, err error) {
