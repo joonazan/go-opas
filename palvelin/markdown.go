@@ -68,7 +68,7 @@ func rinnastuksetHTMLläksi(md []byte) []byte {
 		}
 
 		palat = append(palat,
-			gfm.Markdown(lisääKoodi(md[:alkupaikka])),
+			md[:alkupaikka],
 			[]byte("<div class=comparison><div class=compcell>"),
 		)
 
@@ -78,7 +78,7 @@ func rinnastuksetHTMLläksi(md []byte) []byte {
 
 		for seuraava := bytes.Index(md, väli); seuraava != -1 && seuraava < loppupaikka; seuraava = bytes.Index(md, väli) {
 			palat = append(palat,
-				gfm.Markdown(lisääKoodi(md[:seuraava])),
+				md[:seuraava],
 				[]byte("</div><div class=compcell>"),
 			)
 			uusiAlku := seuraava + len(väli)
@@ -86,13 +86,17 @@ func rinnastuksetHTMLläksi(md []byte) []byte {
 			loppupaikka -= uusiAlku
 		}
 		palat = append(palat,
-			gfm.Markdown(lisääKoodi(md[:loppupaikka])),
+			md[:loppupaikka],
 			[]byte("</div></div>"),
 		)
 		md = md[loppupaikka+len(loppu):]
 	}
 
 	palat = append(palat, md)
+
+	for i := range palat {
+		palat[i] = gfm.Markdown(lisääKoodi(palat[i]))
+	}
 
 	return bytes.Join(palat, []byte{})
 }
