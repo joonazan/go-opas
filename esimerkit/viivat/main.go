@@ -15,7 +15,6 @@ func piirrä(aika float64) {
 
 	gl.Color3d(1, 1, 1)
 	gl.Vertex2d(0, 0)
-	gl.Color3d(0, 0, 0)
 	gl.Vertex2d(0.5, 0)
 
 	gl.Color3d(1, 0, 0)
