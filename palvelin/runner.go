@@ -47,7 +47,7 @@ func Run(code string) (string, error) {
 			return s.output, nil
 		}
 	case <-time.After(time.Second):
-		//cmd.Process.Kill()
+		cmd.Process.Kill()
 		return "", errors.New("Ohjelmalla kesti yli sekunnin.")
 	}
 }
