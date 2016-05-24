@@ -2,7 +2,7 @@
 	"ImportPath": "github.com/joonazan/go-opas",
 	"GoVersion": "go1.6",
 	"Packages": [
-		"./..."
+		"./palvelin"
 	],
 	"Deps": [
 		{
@@ -10,36 +10,12 @@
 			"Rev": "4560588a2f0b6acf8fb39c589b0e2f20eb8538b4"
 		},
 		{
-			"ImportPath": "github.com/davecgh/go-spew/spew",
-			"Rev": "5215b55f46b2b919f50a1df0eaa5886afe4e3b3d"
-		},
-		{
-			"ImportPath": "github.com/go-gl/gl/v2.1/gl",
-			"Rev": "d27345b134366779ca89b4ef53b5233b0ecf7a2d"
-		},
-		{
-			"ImportPath": "github.com/go-gl/glfw/v3.1/glfw",
-			"Rev": "80109e44fb72476ba189857a61030e38febbbf97"
-		},
-		{
 			"ImportPath": "github.com/gorilla/securecookie",
 			"Rev": "e95799a481bbcc3d01c2ad5178524cb8bec9f370"
 		},
 		{
-			"ImportPath": "github.com/joonazan/closedgl",
-			"Rev": "06e4a993108c95c6003cb9389b77c969c7a4194a"
-		},
-		{
-			"ImportPath": "github.com/joonazan/vec2",
-			"Rev": "449867ba2121a36f0eba1570af349622f376776e"
-		},
-		{
 			"ImportPath": "github.com/microcosm-cc/bluemonday",
 			"Rev": "4ac6f27528d0a3f2a59e0b0a6f6b3ff0bb89fe20"
-		},
-		{
-			"ImportPath": "github.com/pmezard/go-difflib/difflib",
-			"Rev": "e8554b8641db39598be7f6342874b958f12ae1d4"
 		},
 		{
 			"ImportPath": "github.com/russross/blackfriday",
@@ -79,17 +55,8 @@
 			"Rev": "8e29b38960a541ed1264b001dcb21701283c590d"
 		},
 		{
-			"ImportPath": "github.com/stretchr/commander",
-			"Rev": "18f86d1c1da117cd0c5a652c748d5cec0320513e"
-		},
-		{
 			"ImportPath": "github.com/stretchr/gomniauth",
 			"Rev": "4ffc30f1926ae4c7ba1a682f005ebb047ef551e4"
-		},
-		{
-			"ImportPath": "github.com/stretchr/goweb",
-			"Comment": "v2-73-gd7518e7",
-			"Rev": "d7518e7a1cf8f0b11605aa2a90319936689a8b5e"
 		},
 		{
 			"ImportPath": "github.com/stretchr/objx",
@@ -104,21 +71,6 @@
 			"Rev": "80ef0842b48b329a6120607c817a85aff5a2ec71"
 		},
 		{
-			"ImportPath": "github.com/stretchr/testify/assert",
-			"Comment": "v1.0-91-g5b9da39",
-			"Rev": "5b9da39b66e8e994455c2525c4421c8cc00a7f93"
-		},
-		{
-			"ImportPath": "github.com/stretchr/testify/http",
-			"Comment": "v1.0-91-g5b9da39",
-			"Rev": "5b9da39b66e8e994455c2525c4421c8cc00a7f93"
-		},
-		{
-			"ImportPath": "github.com/stretchr/testify/mock",
-			"Comment": "v1.0-91-g5b9da39",
-			"Rev": "5b9da39b66e8e994455c2525c4421c8cc00a7f93"
-		},
-		{
 			"ImportPath": "github.com/stretchr/tracer",
 			"Rev": "66d3696bba973e1697f7d68413b3f19c6d6e2a7c"
 		},
@@ -129,22 +81,6 @@
 		{
 			"ImportPath": "golang.org/x/net/html",
 			"Rev": "62ac18b461605b4be188bbc7300e9aa2bc836cd4"
-		},
-		{
-			"ImportPath": "golang.org/x/text/encoding",
-			"Rev": "f773ec03ce334298742df7f3108fc0d402646d22"
-		},
-		{
-			"ImportPath": "golang.org/x/text/internal/utf8internal",
-			"Rev": "f773ec03ce334298742df7f3108fc0d402646d22"
-		},
-		{
-			"ImportPath": "golang.org/x/text/runes",
-			"Rev": "f773ec03ce334298742df7f3108fc0d402646d22"
-		},
-		{
-			"ImportPath": "golang.org/x/text/transform",
-			"Rev": "f773ec03ce334298742df7f3108fc0d402646d22"
 		},
 		{
 			"ImportPath": "labix.org/v2/mgo/bson",
