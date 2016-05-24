@@ -1,5 +1,107 @@
 {
 	"ImportPath": "github.com/joonazan/go-opas",
 	"GoVersion": "go1.6",
-	"Deps": []
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/clbanning/x2j",
+			"Rev": "4560588a2f0b6acf8fb39c589b0e2f20eb8538b4"
+		},
+		{
+			"ImportPath": "github.com/go-gl/gl/v2.1/gl",
+			"Rev": "d27345b134366779ca89b4ef53b5233b0ecf7a2d"
+		},
+		{
+			"ImportPath": "github.com/go-gl/glfw/v3.1/glfw",
+			"Rev": "80109e44fb72476ba189857a61030e38febbbf97"
+		},
+		{
+			"ImportPath": "github.com/gorilla/securecookie",
+			"Rev": "e95799a481bbcc3d01c2ad5178524cb8bec9f370"
+		},
+		{
+			"ImportPath": "github.com/joonazan/closedgl",
+			"Rev": "06e4a993108c95c6003cb9389b77c969c7a4194a"
+		},
+		{
+			"ImportPath": "github.com/joonazan/vec2",
+			"Rev": "449867ba2121a36f0eba1570af349622f376776e"
+		},
+		{
+			"ImportPath": "github.com/microcosm-cc/bluemonday",
+			"Rev": "4ac6f27528d0a3f2a59e0b0a6f6b3ff0bb89fe20"
+		},
+		{
+			"ImportPath": "github.com/russross/blackfriday",
+			"Comment": "v1.4-19-gc8875c0",
+			"Rev": "c8875c0ed47e07b063c3628e2e4d4c9826721795"
+		},
+		{
+			"ImportPath": "github.com/sergi/go-diff/diffmatchpatch",
+			"Rev": "ec7fdbb58eb3e300c8595ad5ac74a5aa50019cc7"
+		},
+		{
+			"ImportPath": "github.com/shurcooL/github_flavored_markdown",
+			"Rev": "b3921bea4a899100a4fd522dd940b819af56e437"
+		},
+		{
+			"ImportPath": "github.com/shurcooL/highlight_diff",
+			"Rev": "8f0db662adc4a5ba63b4ca15bf66ab08123f7161"
+		},
+		{
+			"ImportPath": "github.com/shurcooL/highlight_go",
+			"Rev": "562bf7c1e73e56cf3c10c2506b1e29fccc63d1c9"
+		},
+		{
+			"ImportPath": "github.com/shurcooL/sanitized_anchor_name",
+			"Rev": "10ef21a441db47d8b13ebcc5fd2310f636973c77"
+		},
+		{
+			"ImportPath": "github.com/sourcegraph/annotate",
+			"Rev": "a44dd3d6d2fecf11026692aafe4124462bd2bf9a"
+		},
+		{
+			"ImportPath": "github.com/sourcegraph/syntaxhighlight",
+			"Rev": "637a8b8b94eca8bb8cd559b950cc4f42629ec137"
+		},
+		{
+			"ImportPath": "github.com/stretchr/codecs",
+			"Rev": "8e29b38960a541ed1264b001dcb21701283c590d"
+		},
+		{
+			"ImportPath": "github.com/stretchr/gomniauth",
+			"Rev": "4ffc30f1926ae4c7ba1a682f005ebb047ef551e4"
+		},
+		{
+			"ImportPath": "github.com/stretchr/objx",
+			"Rev": "1a9d0bb9f541897e62256577b352fdbc1fb4fd94"
+		},
+		{
+			"ImportPath": "github.com/stretchr/signature",
+			"Rev": "83afc051c576296d31125078bd14563e4a16538d"
+		},
+		{
+			"ImportPath": "github.com/stretchr/stew/strings",
+			"Rev": "80ef0842b48b329a6120607c817a85aff5a2ec71"
+		},
+		{
+			"ImportPath": "github.com/stretchr/tracer",
+			"Rev": "66d3696bba973e1697f7d68413b3f19c6d6e2a7c"
+		},
+		{
+			"ImportPath": "github.com/ugorji/go/codec",
+			"Rev": "646ae4a518c1c3be0739df898118d9bccf993858"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html",
+			"Rev": "62ac18b461605b4be188bbc7300e9aa2bc836cd4"
+		},
+		{
+			"ImportPath": "labix.org/v2/mgo/bson",
+			"Comment": "287",
+			"Rev": "gustavo@niemeyer.net-20140501184651-975yyw9ipld92pji"
+		}
+	]
 }
