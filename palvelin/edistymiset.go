@@ -2,9 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"log"
-	"os"
 	"path"
 	"sync"
 	"time"

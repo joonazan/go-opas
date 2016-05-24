@@ -2,7 +2,12 @@
 
 package main
 
-import "os"
+import (
+	"encoding/json"
+	"io/ioutil"
+	"log"
+	"os"
+)
 
 func (e Edistymiset) Tallenna() error {
 	e.RLock()
