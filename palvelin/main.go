@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"html/template"
 	"log"
 	"net/http"
@@ -17,7 +18,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	http.HandleFunc("/", loginRequired(func(w http.ResponseWriter, r *http.Request, u User) {
+	loginRequired("/", func(w http.ResponseWriter, r *http.Request, u User) {
 
 		oppilaanEdistyminen := edistymiset.Edistyminen(u.Email)
 		a := make([]AiheJaEdistyminen, len(aiheet))
@@ -44,50 +45,57 @@ func main() {
 		if err != nil {
 			log.Println(err)
 		}
-	}))
+	})
 
-	http.HandleFunc("/setstatus", loginRequired(func(w http.ResponseWriter, r *http.Request, u User) {
-		err := r.ParseForm()
-		if err != nil {
+	loginRequired("/setstatus", func(w http.ResponseWriter, r *http.Request, u User) {
+		if k, v, err := extractSetstatusArguments(r); err == nil {
+			edistymiset.Edistyminen(u.Email).Set(k, v)
+		} else {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
 		}
-
-		if len(r.Form) != 1 {
-			http.Error(w, "Wrong amount of form params", http.StatusInternalServerError)
-			return
-		}
-
-		for k, v := range r.Form {
-			if _, ok := aiheet[k]; !ok {
-				http.Error(w, "Aihe ei ole olemassa.", http.StatusInternalServerError)
-				return
-			}
-			if len(v) != 1 {
-				http.Error(w, "???", http.StatusInternalServerError)
-			}
-			integer, err := strconv.Atoi(v[0])
-			if err != nil {
-				http.Error(w, "Not an integer", http.StatusInternalServerError)
-				return
-			}
-			if integer > TilojenMäärä {
-				http.Error(w, "Tuo ei ole yksikään tiloista!", http.StatusInternalServerError)
-				return
-			}
-			edistymiset.Edistyminen(u.Email).Set(k, uint8(integer))
-		}
-
-		http.Error(w, "What did you expect?", http.StatusNoContent)
-	}))
-
-	http.HandleFunc("/authcallback/google", authentication)
+	})
 
 	http.HandleFunc("/logout", logout)
 
 	edistymiset.TallennaVälein(time.Minute * 10)
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
+}
+
+func extractSetstatusArguments(r *http.Request) (aihe string, tila uint8, err error) {
+	err = r.ParseForm()
+	if err != nil {
+		return
+	}
+
+	if len(r.Form) != 1 {
+		err = errors.New("Wrong amount of form params")
+		return
+	}
+
+	for k, v := range r.Form {
+		if _, ok := aiheet[k]; !ok {
+			err = errors.New("Aihe ei ole olemassa.")
+			return
+		}
+		if len(v) != 1 {
+			err = errors.New("???")
+		}
+		integer, interr := strconv.Atoi(v[0])
+		if interr != nil {
+			err = errors.New("Not an integer")
+			return
+		}
+		if integer > TilojenMäärä {
+			err = errors.New("Tuo ei ole yksikään tiloista!")
+			return
+		}
+
+		return k, uint8(integer), nil
+	}
+
+	err = errors.New("Impossible!")
+	return
 }
 
 var edistymiset = lataaEdistymiset()

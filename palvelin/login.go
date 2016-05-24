@@ -38,9 +38,13 @@ func logout(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
+func init() {
+	http.HandleFunc("/authcallback/google", authentication)
+}
+
 func authentication(w http.ResponseWriter, r *http.Request) {
 
-	user, err := getUser(r)
+	user, redirectTarget, err := getUser(r)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -65,10 +69,10 @@ func authentication(w http.ResponseWriter, r *http.Request) {
 		Path:  "/",
 	})
 
-	http.Redirect(w, r, "/", http.StatusSeeOther)
+	http.Redirect(w, r, redirectTarget, http.StatusSeeOther)
 }
 
-func getUser(r *http.Request) (user common.User, err error) {
+func getUser(r *http.Request) (user common.User, target string, err error) {
 	provider, err := gomniauth.Provider("google")
 	if err != nil {
 		log.Fatal(err)
@@ -84,6 +88,13 @@ func getUser(r *http.Request) (user common.User, err error) {
 		return
 	}
 
+	state, err := gomniauth.StateFromParam(omap.Get("state").String())
+	if err != nil {
+		return
+	}
+
+	target = state.Get("redirect").String()
+
 	user, err = provider.GetUser(creds)
 	return
 }
@@ -92,16 +103,14 @@ type User struct {
 	Email, Name, Nickname, AvatarURL string
 }
 
-type handlerFunc func(w http.ResponseWriter, r *http.Request)
-
-func loginRequired(handler func(http.ResponseWriter, *http.Request, User)) handlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
+func loginRequired(path string, handler func(http.ResponseWriter, *http.Request, User)) {
+	http.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		if user, err := userFromCookie(r); err == nil {
 			handler(w, r, user)
 		} else {
-			login(w, r)
+			login(w, r, path)
 		}
-	}
+	})
 }
 
 func userFromCookie(r *http.Request) (user User, err error) {
@@ -130,14 +139,14 @@ type Provider struct {
 	Name string
 }
 
-func login(w http.ResponseWriter, r *http.Request) {
+func login(w http.ResponseWriter, r *http.Request, redirect string) {
 
 	provider, err := gomniauth.Provider("google")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	state := gomniauth.NewState("after", "success")
+	state := gomniauth.NewState("redirect", redirect)
 	authUrl, err := provider.GetBeginAuthURL(state, nil)
 
 	if err != nil {
