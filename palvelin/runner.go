@@ -27,7 +27,7 @@ func Run(code string) (string, error) {
 
 	compileOutput, err := exec.Command("go", "build", "-o", binaryPath, sourcePath).CombinedOutput()
 	if err != nil {
-		return "", errors.New("Virhe kääntäessä:\n" + string(compileOutput))
+		return "", errors.New("Virhe kääntäessä:\n" + err.Error() + string(compileOutput))
 	}
 	defer os.Remove(binaryPath)
 
