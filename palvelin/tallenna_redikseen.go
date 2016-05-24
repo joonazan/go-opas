@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"gopkg.in/redis.v3"
 	"log"
+	"os"
 )
 
 func lataaEdistymiset() Edistymiset {
