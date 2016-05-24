@@ -1,2 +1,0 @@
-cd palvelin
-palvelin
