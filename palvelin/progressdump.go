@@ -8,11 +8,11 @@ import (
 
 func init() {
 	adminpage := func(path string, page func(http.ResponseWriter)) {
-		http.HandleFunc(path, loginRequired(func(w http.ResponseWriter, r *http.Request, u User) {
+		loginRequired(path, func(w http.ResponseWriter, r *http.Request, u User) {
 			if u.Email == "joon.saar@gmail.com" {
 				page(w)
 			}
-		}))
+		})
 	}
 
 	adminpage("/progressdump", func(w http.ResponseWriter) {

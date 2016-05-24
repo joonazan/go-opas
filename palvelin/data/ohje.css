@@ -21,3 +21,12 @@ code{
 .highlight .s{color: #FD971F;}
 .highlight .o, .m{color: #AE81FF;}
 .highlight .c{color: #75715E;}
+
+.comparison{
+    display: flex;
+    justify-content: center;
+}
+.compcell{
+    flex:1;
+    padding: 5px;
+}
