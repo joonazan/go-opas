@@ -27,7 +27,13 @@ func init() {
 			if err != nil {
 				reply = err.Error()
 			} else {
-				reply = output
+				const toivottu = "Hello, world!\n"
+				reply = "Ohjelmasi tulosti:\n" + output + "\n"
+				if output == toivottu {
+					reply += "Oikein!"
+				} else {
+					reply += "Väärin; pitäisi olla: \n" + toivottu
+				}
 			}
 		}
 
