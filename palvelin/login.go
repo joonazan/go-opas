@@ -2,12 +2,12 @@ package main
 
 import (
 	"encoding/gob"
-	"github.com/gorilla/securecookie"
-	"github.com/stretchr/gomniauth"
-	"github.com/stretchr/gomniauth/common"
-	"github.com/stretchr/gomniauth/providers/google"
-	"github.com/stretchr/objx"
-	"github.com/stretchr/signature"
+	"github.com/joonazan/go-opas/Godeps/_workspace/src/github.com/gorilla/securecookie"
+	"github.com/joonazan/go-opas/Godeps/_workspace/src/github.com/stretchr/gomniauth"
+	"github.com/joonazan/go-opas/Godeps/_workspace/src/github.com/stretchr/gomniauth/common"
+	"github.com/joonazan/go-opas/Godeps/_workspace/src/github.com/stretchr/gomniauth/providers/google"
+	"github.com/joonazan/go-opas/Godeps/_workspace/src/github.com/stretchr/objx"
+	"github.com/joonazan/go-opas/Godeps/_workspace/src/github.com/stretchr/signature"
 	"html/template"
 	"log"
 	"net/http"
