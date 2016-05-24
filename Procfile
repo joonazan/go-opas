@@ -1,1 +1,1 @@
-web: palvelin
+web: sh run.sh
