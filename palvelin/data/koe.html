@@ -12,17 +12,17 @@
 	</div>
 	{{end}}
 	<div class=compcell>
+		<h1>{{.Phase}}</h1>
 		{{.Description}}
 		<form action="{{.FormAction}}" method="POST">
 			<textarea name="{{.CodeName}}" rows=40 cols=90>{{.Code}}</textarea>
 			<input type="submit" >
 		</form>
-		{{if not .Last}}
-		<form action="{{.SkipURL}}">
-			<input type="submit" value="Ohita" >
-		</form>
-		{{end}}
 		<pre>{{.Reply}}</pre>
+		{{if not .Last}}
+		<br><br>
+		<a href="{{.SkipURL}}">Luovuta ja siirry seuraavaan vaiheeseen</a>
+		{{end}}
 	</div>
 </div>
 </body>

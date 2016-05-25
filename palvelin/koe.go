@@ -145,6 +145,7 @@ func init() {
 				FormAction, SkipURL, CodeName, Code, Reply, PreviousSolution string
 				Description                                                  template.HTML
 				Last                                                         bool
+				Phase                                                        int
 			}{
 				FormAction:       koeURL,
 				SkipURL:          ohitusURL,
@@ -154,6 +155,7 @@ func init() {
 				Reply:            reply,
 				PreviousSolution: previousSolution(u, kokeenNimi),
 				Last:             last,
+				Phase:            vaihe,
 			})
 		})
 
