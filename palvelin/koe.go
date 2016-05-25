@@ -79,9 +79,14 @@ func init() {
 		vaihe := kokeenVaihe(u, kokeenNimi)
 		tehtävä := tehtävät[vaihe]
 
-		var reply, code string
+		code := koodi(u, kokeenNimi, vaihe)
+
+		var reply string
 		if r.ParseForm(); len(r.Form) != 0 {
 			code = r.FormValue(codeField)
+
+			tallennaKoodi(u, kokeenNimi, vaihe, code)
+
 			var correct bool
 			correct, reply = grade(code, syötteet, tehtävä.tulosteet)
 			if correct {
@@ -154,6 +159,10 @@ func lueLuku(key string) int64 {
 
 func koodi(u User, kokeenNimi string, tehtävä int64) string {
 	return redisClient.Get(tehtäväAvain(u, kokeenNimi, tehtävä)).String()
+}
+
+func tallennaKoodi(u User, kokeenNimi string, tehtävä int64, koodi string) {
+	return redisClient.Set(tehtäväAvain(u, kokeenNimi, tehtävä), koodi)
 }
 
 func tehtäväAvain(u User, kokeenNimi string, tehtävä int64) string {

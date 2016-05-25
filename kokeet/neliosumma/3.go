@@ -7,7 +7,7 @@ func main() {
 	fmt.Scan(&n)
 
 	summa := 0
-	for i := 0; i <= n; i++ {
+	for i := 1; i <= n; i++ {
 		summa += i * i
 	}
 
