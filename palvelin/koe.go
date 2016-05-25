@@ -159,7 +159,7 @@ func init() {
 
 		loginRequired(ohitusURL, func(w http.ResponseWriter, r *http.Request, u User) {
 			vaihe := kokeenVaihe(u, kokeenNimi)
-			if int(vaihe) == len(tehtävät)-1 {
+			if int(vaihe) != len(tehtävät)-1 {
 				edistyKokeessa(u, kokeenNimi)
 			}
 			http.Redirect(w, r, koeURL, http.StatusSeeOther)
