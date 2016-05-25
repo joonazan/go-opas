@@ -30,7 +30,8 @@ func init() {
 		syötetiedosto = "inputs"
 	)
 
-	kansio := "../kokeet/neliosumma"
+	kokeenNimi := "neliosumma"
+	kansio := path.Join(koeKansio, kokeenNimi)
 	syötteet, err := lueRivit(path.Join(kansio, syötetiedosto))
 	if err != nil {
 		panic("ei saatu syötteitä tiedostosta: " + err.Error()) // TODO: syötteettömät tehtävät
@@ -66,12 +67,16 @@ func init() {
 
 	loginRequired(koeURL, func(w http.ResponseWriter, r *http.Request, u User) {
 
-		tehtävä := tehtävät[0]
+		vaihe := kokeenVaihe(u, kokeenNimi)
+		tehtävä := tehtävät[vaihe]
 
 		var reply, code string
 		if r.ParseForm(); len(r.Form) != 0 {
 			code = r.FormValue(codeField)
-			_, reply = grade(code, syötteet, tehtävä.tulosteet)
+			correct, reply := grade(code, syötteet, tehtävä.tulosteet)
+			if correct {
+				edistyKokeessa(u, kokeenNimi)
+			}
 		}
 
 		t.Execute(w, struct {
@@ -93,6 +98,30 @@ func paniccingReadFile(fn string) string {
 		panic(err)
 	}
 	return string(data)
+}
+
+func kokeenVaihe(u User, kokeenNimi string) int {
+	return lueTavu(kokelasAvain(u, kokeenNimi))
+}
+
+func edistyKokeessa(u User, kokeenNimi string) {
+	kirjoitaTavu(kokelasAvain(u, kokeenNimi), kokeenVaihe(u, kokeenNimi)+1)
+}
+
+func kokelasAvain(u User, kokeenNimi string) string {
+	return u.Email + kokeenNimi
+}
+
+func lueTavu(key string) int {
+	resp, err := redisClient.Get(key)
+	if err != nil {
+		return 0
+	}
+	return int(resp[0])
+}
+
+func kirjoitaTavu(key string, value int) {
+	redisClient.Set(key, []byte{byte(value)}, 0)
 }
 
 func grade(code string, inputs, outputs []string) (bool, string) {

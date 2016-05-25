@@ -12,7 +12,7 @@ import (
 func lataaEdistymiset() Edistymiset {
 
 	e := Edistymiset{}
-	bytes, err := client.Get("all").Result()
+	bytes, err := redisClient.Get("all").Result()
 	if err == nil {
 		err := json.Unmarshal([]byte(bytes), &e.data)
 		if err != nil {
@@ -27,7 +27,7 @@ func lataaEdistymiset() Edistymiset {
 	return e
 }
 
-var client = uusiRedis()
+var redisClient = uusiRedis()
 
 func uusiRedis() *redis.Client {
 	return redis.NewClient(&redis.Options{
@@ -45,5 +45,5 @@ func (e Edistymiset) Tallenna() error {
 	}
 	e.RUnlock()
 
-	return client.Set("all", data, 0).Err()
+	return redisClient.Set("all", data, 0).Err()
 }
