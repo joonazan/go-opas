@@ -68,20 +68,30 @@ func lataaAiheetKansiosta(aiheet map[string]Aihe, kansio string) {
 
 // jos esitietotiedostoa ei löydy, palauttaa yhden esitiedon id:llä "määrittelemättömät esitiedot"
 func haeEsitiedot(id string) []string {
-	tiedosto, err := os.Open("../esitiedot/" + id)
+	esitiedot, err := lueRivit("../esitiedot/" + id)
 	if err != nil {
 		return []string{"määrittelemättömät esitiedot"}
 	}
+
+	return esitiedot
+}
+
+func lueRivit(tiedostonimi string) ([]string, error) {
+
+	tiedosto, err := os.Open(tiedostonimi)
+	if err != nil {
+		return nil, err
+	}
 	defer tiedosto.Close()
 
-	esitiedot := make([]string, 0)
+	rivit := make([]string, 0)
 	scanner := bufio.NewScanner(tiedosto)
 	for scanner.Scan() {
 		rivi := strings.TrimSpace(scanner.Text())
 		if rivi != "" {
-			esitiedot = append(esitiedot, rivi)
+			rivit = append(rivit, rivi)
 		}
 	}
 
-	return esitiedot
+	return rivit, nil
 }
