@@ -66,11 +66,11 @@ func init() {
 	}
 
 	previousSolution := func(u User, kokeenNimi string) string {
-		tehtävä := kokeenVaihe(u, kokeenNimi)
-		if oikein(u, kokeenNimi, tehtävä) {
-			return koodi(u, kokeenNimi, tehtävä)
+		edellinen := kokeenVaihe(u, kokeenNimi) - 1
+		if oikein(u, kokeenNimi, edellinen) {
+			return koodi(u, kokeenNimi, edellinen)
 		} else {
-			return tehtävät[tehtävä].mallikoodi
+			return tehtävät[edellinen].mallikoodi
 		}
 	}
 
