@@ -101,19 +101,27 @@ func paniccingReadFile(fn string) string {
 }
 
 func kokeenVaihe(u User, kokeenNimi string) int {
-	resp, err := redisClient.Get(kokelasAvain(u, kokeenNimi))
+	return lueTavu(kokelasAvain(u, kokeenNimi))
+}
+
+func edistyKokeessa(u User, kokeenNimi string) {
+	kirjoitaTavu(kokelasAvain(u, kokeenNimi), kokeenVaihe(u, kokeenNimi)+1)
+}
+
+func kokelasAvain(u User, kokeenNimi string) string {
+	return u.Email + kokeenNimi
+}
+
+func lueTavu(key string) int {
+	resp, err := redisClient.Get(key)
 	if err != nil {
 		return 0
 	}
 	return int(resp[0])
 }
 
-func edistyKokeessa(u User, kokeenNimi string) {
-	redisClient.Set(kokelasAvain(u, kokeenNimi), []byte{byte(kokeenVaihe(u, kokeenNimi) + 1)}, 0)
-}
-
-func kokelasAvain(u User, kokeenNimi string) string {
-	return u.Email + kokeenNimi
+func kirjoitaTavu(key string, value int) {
+	redisClient.Set(key, []byte{byte(value)}, 0)
 }
 
 func grade(code string, inputs, outputs []string) (bool, string) {
