@@ -62,7 +62,10 @@ func init() {
 		return dats
 	}
 
-	for moneskokoe, kokeenNimi := range kokeet {
+	for moneskokoe := range kokeet {
+		// pakko tehdä näin, jotta closuret eivät saa kaikki samaa arvoa
+		kokeenNimi := kokeet[moneskokoe]
+
 		koeURL := koeJuuri + kokeenNimi
 		ohitusURL := koeURL + "/skip"
 		kansio := path.Join(koeKansio, kokeenNimi)
