@@ -100,8 +100,11 @@ func init() {
 
 			var correct bool
 			correct, reply = grade(code, syötteet, tehtävä.tulosteet)
-			if correct && !last {
-				edistyKokeessa(u, kokeenNimi, true)
+			if correct {
+				redisClient.Set(oikeinAvain(avain, vaihe), 1, 0)
+				if !last {
+					edistyKokeessa(u, kokeenNimi, true)
+				}
 			}
 		}
 
@@ -124,7 +127,7 @@ func init() {
 	loginRequired(ohitusURL, func(w http.ResponseWriter, r *http.Request, u User) {
 		vaihe := kokeenVaihe(u, kokeenNimi)
 		if int(vaihe) == len(tehtävät)-1 {
-			edistyKokeessa(u, kokeenNimi, false)
+			edistyKokeessa(u, kokeenNimi)
 		}
 		http.Redirect(w, r, koeURL, http.StatusSeeOther)
 	})
@@ -163,17 +166,10 @@ func kokeenVaihe(u User, kokeenNimi string) int {
 	return lueLuku(kokelasAvain(u, kokeenNimi))
 }
 
-func edistyKokeessa(u User, kokeenNimi string, oikein bool) {
+func edistyKokeessa(u User, kokeenNimi string) {
 	avain := kokelasAvain(u, kokeenNimi)
 	vaihe := kokeenVaihe(u, kokeenNimi)
 	redisClient.Set(avain, vaihe+1, 0)
-	var asInt int64
-	if oikein {
-		asInt = 1
-	} else {
-		asInt = 0
-	}
-	redisClient.Set(oikeinAvain(avain, vaihe), asInt, 0)
 }
 
 func oikein(u User, kokeenNimi string, vaihe int) bool {
