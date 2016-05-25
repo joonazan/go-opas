@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <body>
-{{.Description}}
-<form action="{{.FormAction}}" method="POST">
-	<textarea name="{{.CodeName}}" rows=40 cols=90>{{.Code}}</textarea>
-	<input type="submit" >
-</form>
-<pre>{{.Reply}}</pre>
+<div class=comparison>
+	<div class=compcell>
+		<h2>Ratkaisu edelliseen kohtaan</h2>
+		<pre>
+		{{.PreviousSolution}}
+		</pre>
+	</div>
+	<div class=compcell>
+		{{.Description}}
+		<form action="{{.FormAction}}" method="POST">
+			<textarea name="{{.CodeName}}" rows=40 cols=90>{{.Code}}</textarea>
+			<input type="submit" >
+		</form>
+		<pre>{{.Reply}}</pre>
+	</div>
+</div>
 </body>
