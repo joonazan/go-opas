@@ -104,6 +104,10 @@ func init() {
 				redisClient.Set(oikeinAvain(avain, vaihe), 1, 0)
 				if !last {
 					edistyKokeessa(u, kokeenNimi, true)
+
+					vaihe++
+					last = int(vaihe) == len(tehtävät)-1
+					tehtävä = tehtävät[vaihe]
 				}
 			}
 		}
