@@ -45,6 +45,23 @@ func init() {
 		kokeet[i] = path.Base(polku)
 	}
 
+	trackSummariesFor := func(u User) []TrackSummary {
+		dats := make([]TrackSummary, len(kokeet))
+
+		for i, kokeenNimi := range kokeet {
+			statukset := make([]int, tehtävienPituudet[i])
+			for i := 0; i <= kokeenVaihe(u, kokeenNimi); i++ {
+				if oikein(u, kokeenNimi, i) {
+					statukset[i] = 1
+				} else {
+					statukset[i] = 2
+				}
+			}
+			dats[i] = TrackSummary{Name: kokeenNimi, Statukset: statukset}
+		}
+		return dats
+	}
+
 	for moneskokoe, kokeenNimi := range kokeet {
 		koeURL := koeJuuri + kokeenNimi
 		ohitusURL := koeURL + "/skip"
@@ -149,26 +166,31 @@ func init() {
 		})
 	}
 
+	const kokeenTekijät = "kokeenTekijät"
 	loginRequired(koeJuuri, func(w http.ResponseWriter, r *http.Request, u User) {
-		dats := make([]TrackSummary, len(kokeet))
+		redisClient.SAdd(kokeenTekijät, u.Email)
 
-		for i, kokeenNimi := range kokeet {
-			statukset := make([]int, tehtävienPituudet[i])
-			for i := 0; i <= kokeenVaihe(u, kokeenNimi); i++ {
-				if oikein(u, kokeenNimi, i) {
-					statukset[i] = 1
-				} else {
-					statukset[i] = 2
-				}
-			}
-			dats[i] = TrackSummary{Name: kokeenNimi, Statukset: statukset}
-		}
-		trackitTemplate.Execute(w, dats)
+		trackitTemplate.Execute(w, []TestSummary{{u.Email, trackSummariesFor(u)}})
 	})
 
 	adminpage(koeJuuri+"admin", func(w http.ResponseWriter) {
-
+		var tss []TestSummary
+		emails, err := redisClient.SMembers(kokeenTekijät).Result()
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		for _, email := range emails {
+			ts := TestSummary{Email: email, Tracks: trackSummariesFor(User{Email: email})}
+			tss = append(tss, ts)
+		}
+		trackitTemplate.Execute(w, tss)
 	})
+}
+
+type TestSummary struct {
+	Email  string
+	Tracks []TrackSummary
 }
 
 type TrackSummary struct {
