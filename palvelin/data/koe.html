@@ -4,7 +4,7 @@
 </head>
 <body>
 <div class=comparison>
-	{{if len .PreviousSolution ne 0}}
+	{{if ne (len .PreviousSolution) 0}}
 	<div class=compcell>
 		<h2>Ratkaisu edelliseen kohtaan</h2>
 		<pre>{{.PreviousSolution}}</pre>
