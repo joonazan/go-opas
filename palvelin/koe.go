@@ -69,6 +69,9 @@ func init() {
 
 	previousSolution := func(u User, kokeenNimi string) string {
 		edellinen := kokeenVaihe(u, kokeenNimi) - 1
+		if edellinen == -1 {
+			return ""
+		}
 		if oikein(u, kokeenNimi, edellinen) {
 			return koodi(u, kokeenNimi, edellinen)
 		} else {
