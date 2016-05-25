@@ -11,6 +11,11 @@
 			<textarea name="{{.CodeName}}" rows=40 cols=90>{{.Code}}</textarea>
 			<input type="submit" >
 		</form>
+		{{if not .Last}}
+		<form action="{{.SkipURL}}">
+			<input type="submit" value="Ohita" >
+		</form>
+		{{end}}
 		<pre>{{.Reply}}</pre>
 	</div>
 </div>
