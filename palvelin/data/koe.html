@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <body>
+{{.Description}}
 <form action="{{.FormAction}}" method="POST">
-	<textarea name="{{.CodeName}}" rows=60 cols=90>{{.Code}}</textarea>
+	<textarea name="{{.CodeName}}" rows=40 cols=90>{{.Code}}</textarea>
 	<input type="submit" >
 </form>
 <pre>{{.Reply}}</pre>
