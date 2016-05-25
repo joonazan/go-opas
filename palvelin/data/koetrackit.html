@@ -4,9 +4,11 @@
 </head>
 <body>
 {{range .}}
+<p>
 <a href="/koe/{{.Name}}">{{.Name}}</a>
 	{{range $i, $e := .Statukset}}
 		<span style="color:{{if eq . 0}}gray{{else if eq . 1}}green{{else}}red{{end}}">{{$i}} </span>
 	{{end}}
 {{end}}
+</p>
 </body>

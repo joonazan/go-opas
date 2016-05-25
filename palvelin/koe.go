@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"path"
+	"path/filepath"
 )
 
 type Tehtävä struct {
@@ -35,117 +36,134 @@ func init() {
 		syötetiedosto = "inputs"
 	)
 
-	kokeenNimi := "neliosumma"
-	koeURL := koeJuuri + kokeenNimi
-	ohitusURL := koeURL + "/skip"
-	kansio := path.Join(koeKansio, kokeenNimi)
-	syötteet, err := lueRivit(path.Join(kansio, syötetiedosto))
+	kokeet, err := filepath.Glob(koeKansio + "/*")
 	if err != nil {
-		panic("ei saatu syötteitä tiedostosta: " + err.Error()) // TODO: syötteettömät tehtävät
+		panic(err)
+	}
+	tehtävienPituudet := make([]int, len(kokeet))
+	for i, polku := range kokeet {
+		kokeet[i] = path.Base(polku)
 	}
 
-	var tehtävät []Tehtävä
-	for i := 0; ; i++ {
-		fn := path.Join(kansio, fmt.Sprintf("%d.go", i))
-		if _, err := os.Stat(fn); os.IsNotExist(err) {
-			break
-		}
-
-		bin, err := CompileFile(fn)
+	for moneskokoe, kokeenNimi := range kokeet {
+		koeURL := koeJuuri + kokeenNimi
+		ohitusURL := koeURL + "/skip"
+		kansio := path.Join(koeKansio, kokeenNimi)
+		syötteet, err := lueRivit(path.Join(kansio, syötetiedosto))
 		if err != nil {
-			panic("virhe kääntäessä mallikoodia: " + err.Error())
+			panic("ei saatu syötteitä tiedostosta: " + err.Error()) // TODO: syötteettömät tehtävät
 		}
-		defer os.Remove(bin)
 
-		tehtävä := Tehtävä{
-			kuvaus:     template.HTML(paniccingReadFile(path.Join(kansio, fmt.Sprintf("%d.html", i)))),
-			mallikoodi: paniccingReadFile(fn),
-			tulosteet:  make([]string, len(syötteet)),
-		}
-		for j, input := range syötteet {
-			output, err := RunBinary(bin, input)
-			if err != nil {
-				panic("virhe ajaessa mallikoodia: " + err.Error())
+		var tehtävät []Tehtävä
+		for i := 0; ; i++ {
+			fn := path.Join(kansio, fmt.Sprintf("%d.go", i))
+			if _, err := os.Stat(fn); os.IsNotExist(err) {
+				break
 			}
-			tehtävä.tulosteet[j] = output
+
+			bin, err := CompileFile(fn)
+			if err != nil {
+				panic("virhe kääntäessä mallikoodia: " + err.Error())
+			}
+			defer os.Remove(bin)
+
+			tehtävä := Tehtävä{
+				kuvaus:     template.HTML(paniccingReadFile(path.Join(kansio, fmt.Sprintf("%d.html", i)))),
+				mallikoodi: paniccingReadFile(fn),
+				tulosteet:  make([]string, len(syötteet)),
+			}
+			for j, input := range syötteet {
+				output, err := RunBinary(bin, input)
+				if err != nil {
+					panic("virhe ajaessa mallikoodia: " + err.Error())
+				}
+				tehtävä.tulosteet[j] = output
+			}
+			tehtävät = append(tehtävät, tehtävä)
 		}
-		tehtävät = append(tehtävät, tehtävä)
-	}
 
-	previousSolution := func(u User, kokeenNimi string) string {
-		edellinen := kokeenVaihe(u, kokeenNimi) - 1
-		if edellinen == -1 {
-			return ""
+		tehtävienPituudet[moneskokoe] = len(tehtävät)
+
+		previousSolution := func(u User, kokeenNimi string) string {
+			edellinen := kokeenVaihe(u, kokeenNimi) - 1
+			if edellinen == -1 {
+				return ""
+			}
+			if oikein(u, kokeenNimi, edellinen) {
+				return koodi(u, kokeenNimi, edellinen)
+			} else {
+				return tehtävät[edellinen].mallikoodi
+			}
 		}
-		if oikein(u, kokeenNimi, edellinen) {
-			return koodi(u, kokeenNimi, edellinen)
-		} else {
-			return tehtävät[edellinen].mallikoodi
-		}
-	}
 
-	loginRequired(koeURL, func(w http.ResponseWriter, r *http.Request, u User) {
+		loginRequired(koeURL, func(w http.ResponseWriter, r *http.Request, u User) {
 
-		vaihe := kokeenVaihe(u, kokeenNimi)
-		last := int(vaihe) == len(tehtävät)-1
-		tehtävä := tehtävät[vaihe]
+			vaihe := kokeenVaihe(u, kokeenNimi)
+			last := int(vaihe) == len(tehtävät)-1
+			tehtävä := tehtävät[vaihe]
 
-		code := koodi(u, kokeenNimi, vaihe)
+			code := koodi(u, kokeenNimi, vaihe)
 
-		var reply string
-		if r.ParseForm(); len(r.Form) != 0 {
-			code = r.FormValue(codeField)
+			var reply string
+			if r.ParseForm(); len(r.Form) != 0 {
+				code = r.FormValue(codeField)
 
-			tallennaKoodi(u, kokeenNimi, vaihe, code)
+				tallennaKoodi(u, kokeenNimi, vaihe, code)
 
-			var correct bool
-			correct, reply = grade(code, syötteet, tehtävä.tulosteet)
-			if correct {
-				redisClient.Set(oikeinAvain(kokelasAvain(u, kokeenNimi), vaihe), 1, 0)
-				if !last {
-					edistyKokeessa(u, kokeenNimi)
+				var correct bool
+				correct, reply = grade(code, syötteet, tehtävä.tulosteet)
+				if correct {
+					redisClient.Set(oikeinAvain(kokelasAvain(u, kokeenNimi), vaihe), 1, 0)
+					if !last {
+						edistyKokeessa(u, kokeenNimi)
 
-					vaihe++
-					last = int(vaihe) == len(tehtävät)-1
-					tehtävä = tehtävät[vaihe]
+						vaihe++
+						last = int(vaihe) == len(tehtävät)-1
+						tehtävä = tehtävät[vaihe]
+					}
 				}
 			}
-		}
 
-		koeTemplate.Execute(w, struct {
-			FormAction, SkipURL, CodeName, Code, Reply, PreviousSolution string
-			Description                                                  template.HTML
-			Last                                                         bool
-		}{
-			FormAction:       koeURL,
-			SkipURL:          ohitusURL,
-			CodeName:         codeField,
-			Description:      tehtävä.kuvaus,
-			Code:             code,
-			Reply:            reply,
-			PreviousSolution: previousSolution(u, kokeenNimi),
-			Last:             last,
+			koeTemplate.Execute(w, struct {
+				FormAction, SkipURL, CodeName, Code, Reply, PreviousSolution string
+				Description                                                  template.HTML
+				Last                                                         bool
+			}{
+				FormAction:       koeURL,
+				SkipURL:          ohitusURL,
+				CodeName:         codeField,
+				Description:      tehtävä.kuvaus,
+				Code:             code,
+				Reply:            reply,
+				PreviousSolution: previousSolution(u, kokeenNimi),
+				Last:             last,
+			})
 		})
-	})
 
-	loginRequired(ohitusURL, func(w http.ResponseWriter, r *http.Request, u User) {
-		vaihe := kokeenVaihe(u, kokeenNimi)
-		if int(vaihe) == len(tehtävät)-1 {
-			edistyKokeessa(u, kokeenNimi)
-		}
-		http.Redirect(w, r, koeURL, http.StatusSeeOther)
-	})
+		loginRequired(ohitusURL, func(w http.ResponseWriter, r *http.Request, u User) {
+			vaihe := kokeenVaihe(u, kokeenNimi)
+			if int(vaihe) == len(tehtävät)-1 {
+				edistyKokeessa(u, kokeenNimi)
+			}
+			http.Redirect(w, r, koeURL, http.StatusSeeOther)
+		})
+	}
 
 	loginRequired(koeJuuri, func(w http.ResponseWriter, r *http.Request, u User) {
-		statukset := make([]int, len(tehtävät))
-		for i := 0; i <= kokeenVaihe(u, kokeenNimi); i++ {
-			if oikein(u, kokeenNimi, i) {
-				statukset[i] = 1
-			} else {
-				statukset[i] = 2
+		dats := make([]TrackSummary, len(kokeet))
+
+		for i, kokeenNimi := range kokeet {
+			statukset := make([]int, tehtävienPituudet[i])
+			for i := 0; i <= kokeenVaihe(u, kokeenNimi); i++ {
+				if oikein(u, kokeenNimi, i) {
+					statukset[i] = 1
+				} else {
+					statukset[i] = 2
+				}
 			}
+			dats[i] = TrackSummary{Name: kokeenNimi, Statukset: statukset}
 		}
-		trackitTemplate.Execute(w, []TrackSummary{TrackSummary{Name: kokeenNimi, Statukset: statukset}})
+		trackitTemplate.Execute(w, dats)
 	})
 
 	adminpage(koeJuuri+"admin", func(w http.ResponseWriter) {
@@ -227,7 +245,7 @@ func grade(code string, inputs, outputs []string) (bool, string) {
 			return false, err.Error()
 		}
 		if output != outputs[i] {
-			return false, "Ohjelmasi tulosti:\n" + output + "\nVäärin; pitäisi olla: \n" + outputs[i]
+			return false, "Syötteellä '" + input + "' ohjelmasi tulosti:\n" + output + "\nVäärin; pitäisi olla: \n" + outputs[i]
 		}
 	}
 
