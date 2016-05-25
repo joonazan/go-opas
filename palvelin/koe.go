@@ -112,12 +112,12 @@ func kokelasAvain(u User, kokeenNimi string) string {
 	return u.Email + kokeenNimi
 }
 
-func lueLuku(key string) int {
+func lueLuku(key string) int64 {
 	resp, err := redisClient.Get(key).Int64()
 	if err != nil {
 		return 0
 	}
-	return int(resp[0])
+	return resp
 }
 
 func grade(code string, inputs, outputs []string) (bool, string) {
