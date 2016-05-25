@@ -23,7 +23,7 @@ func init() {
 	}
 
 	const (
-		koeURL    = "/koe/"
+		koeJuuri  = "/koe/"
 		codeField = "koodi"
 
 		koeKansio     = "../kokeet"
@@ -31,6 +31,8 @@ func init() {
 	)
 
 	kokeenNimi := "neliosumma"
+	koeURL := koeJuuri + kokeenNimi
+	ohitusURL := koeURL + "/skip"
 	kansio := path.Join(koeKansio, kokeenNimi)
 	syötteet, err := lueRivit(path.Join(kansio, syötetiedosto))
 	if err != nil {
@@ -77,6 +79,7 @@ func init() {
 	loginRequired(koeURL, func(w http.ResponseWriter, r *http.Request, u User) {
 
 		vaihe := kokeenVaihe(u, kokeenNimi)
+		last := int(vaihe) == len(tehtävät)-1
 		tehtävä := tehtävät[vaihe]
 
 		code := koodi(u, kokeenNimi, vaihe)
@@ -89,22 +92,32 @@ func init() {
 
 			var correct bool
 			correct, reply = grade(code, syötteet, tehtävä.tulosteet)
-			if correct {
+			if correct && !last {
 				edistyKokeessa(u, kokeenNimi, true)
 			}
 		}
 
 		t.Execute(w, struct {
-			FormAction, CodeName, Code, Reply, PreviousSolution string
-			Description                                         template.HTML
+			FormAction, SkipURL, CodeName, Code, Reply, PreviousSolution string
+			Description                                                  template.HTML
+			Last                                                         bool
 		}{
 			FormAction:       koeURL,
+			SkipURL:          ohitusURL,
 			CodeName:         codeField,
 			Description:      tehtävä.kuvaus,
 			Code:             code,
 			Reply:            reply,
 			PreviousSolution: previousSolution(u, kokeenNimi),
+			Last:             last,
 		})
+	})
+
+	loginRequired(ohitusURL, func(w http.ResponseWriter, r *http.Request, u User) {
+		vaihe := kokeenVaihe(u, kokeenNimi)
+		if int(vaihe) == len(tehtävät)-1 {
+			edistyKokeessa(u, kokeenNimi, false)
+		}
 	})
 }
 
