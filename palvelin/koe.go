@@ -158,7 +158,8 @@ func lueLuku(key string) int64 {
 }
 
 func koodi(u User, kokeenNimi string, tehtävä int64) string {
-	return redisClient.Get(tehtäväAvain(u, kokeenNimi, tehtävä)).String()
+	b, _ := redisClient.Get(tehtäväAvain(u, kokeenNimi, tehtävä)).Bytes()
+	return string(b)
 }
 
 func tallennaKoodi(u User, kokeenNimi string, tehtävä int64, koodi string) {
