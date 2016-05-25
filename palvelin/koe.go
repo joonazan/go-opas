@@ -162,7 +162,7 @@ func koodi(u User, kokeenNimi string, tehtävä int64) string {
 }
 
 func tallennaKoodi(u User, kokeenNimi string, tehtävä int64, koodi string) {
-	return redisClient.Set(tehtäväAvain(u, kokeenNimi, tehtävä), koodi)
+	redisClient.Set(tehtäväAvain(u, kokeenNimi, tehtävä), koodi, 0)
 }
 
 func tehtäväAvain(u User, kokeenNimi string, tehtävä int64) string {
