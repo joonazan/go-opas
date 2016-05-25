@@ -101,9 +101,9 @@ func init() {
 			var correct bool
 			correct, reply = grade(code, syötteet, tehtävä.tulosteet)
 			if correct {
-				redisClient.Set(oikeinAvain(avain, vaihe), 1, 0)
+				redisClient.Set(oikeinAvain(kokelasAvain(u, kokeenNimi), vaihe), 1, 0)
 				if !last {
-					edistyKokeessa(u, kokeenNimi, true)
+					edistyKokeessa(u, kokeenNimi)
 
 					vaihe++
 					last = int(vaihe) == len(tehtävät)-1
