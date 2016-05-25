@@ -17,7 +17,12 @@ type Tehtävä struct {
 
 func init() {
 
-	t, err := template.ParseFiles("data/koe.html")
+	koeTemplate, err := template.ParseFiles("data/koe.html")
+	if err != nil {
+		panic(err)
+	}
+
+	trackitTemplate, err := template.ParseFiles("data/koetrackit.html")
 	if err != nil {
 		panic(err)
 	}
@@ -100,7 +105,7 @@ func init() {
 			}
 		}
 
-		t.Execute(w, struct {
+		koeTemplate.Execute(w, struct {
 			FormAction, SkipURL, CodeName, Code, Reply, PreviousSolution string
 			Description                                                  template.HTML
 			Last                                                         bool
@@ -121,7 +126,29 @@ func init() {
 		if int(vaihe) == len(tehtävät)-1 {
 			edistyKokeessa(u, kokeenNimi, false)
 		}
+		http.Redirect(w, r, koeURL, http.StatusSeeOther)
 	})
+
+	loginRequired(koeJuuri, func(w http.ResponseWriter, r *http.Request, u User) {
+		statukset := make([]int, len(tehtävät))
+		for i := 0; i <= kokeenVaihe(u, kokeenNimi); i++ {
+			if oikein(u, kokeenNimi, i) {
+				statukset[i] = 1
+			} else {
+				statukset[i] = 2
+			}
+		}
+		trackitTemplate.Execute(w, []TrackSummary{TrackSummary{Name: kokeenNimi, Statukset: statukset}})
+	})
+
+	adminpage(koeJuuri+"admin", func(w http.ResponseWriter) {
+
+	})
+}
+
+type TrackSummary struct {
+	Name      string
+	Statukset []int
 }
 
 func paniccingReadFile(fn string) string {
@@ -132,7 +159,7 @@ func paniccingReadFile(fn string) string {
 	return string(data)
 }
 
-func kokeenVaihe(u User, kokeenNimi string) int64 {
+func kokeenVaihe(u User, kokeenNimi string) int {
 	return lueLuku(kokelasAvain(u, kokeenNimi))
 }
 
@@ -149,7 +176,7 @@ func edistyKokeessa(u User, kokeenNimi string, oikein bool) {
 	redisClient.Set(oikeinAvain(avain, vaihe), asInt, 0)
 }
 
-func oikein(u User, kokeenNimi string, vaihe int64) bool {
+func oikein(u User, kokeenNimi string, vaihe int) bool {
 	i, _ := redisClient.Get(oikeinAvain(kokelasAvain(u, kokeenNimi), vaihe)).Int64()
 	if i == 1 {
 		return true
@@ -161,28 +188,28 @@ func kokelasAvain(u User, kokeenNimi string) string {
 	return u.Email + kokeenNimi
 }
 
-func oikeinAvain(x string, y int64) string {
+func oikeinAvain(x string, y int) string {
 	return fmt.Sprintf("OV%d", y) + x
 }
 
-func lueLuku(key string) int64 {
+func lueLuku(key string) int {
 	resp, err := redisClient.Get(key).Int64()
 	if err != nil {
 		return 0
 	}
-	return resp
+	return int(resp)
 }
 
-func koodi(u User, kokeenNimi string, tehtävä int64) string {
+func koodi(u User, kokeenNimi string, tehtävä int) string {
 	b, _ := redisClient.Get(tehtäväAvain(u, kokeenNimi, tehtävä)).Bytes()
 	return string(b)
 }
 
-func tallennaKoodi(u User, kokeenNimi string, tehtävä int64, koodi string) {
+func tallennaKoodi(u User, kokeenNimi string, tehtävä int, koodi string) {
 	redisClient.Set(tehtäväAvain(u, kokeenNimi, tehtävä), koodi, 0)
 }
 
-func tehtäväAvain(u User, kokeenNimi string, tehtävä int64) string {
+func tehtäväAvain(u User, kokeenNimi string, tehtävä int) string {
 	return fmt.Sprintf("%d", tehtävä) + kokelasAvain(u, kokeenNimi)
 }
 

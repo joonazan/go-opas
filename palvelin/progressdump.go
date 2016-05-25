@@ -6,14 +6,15 @@ import (
 	"net/http"
 )
 
+func adminpage(path string, page func(http.ResponseWriter)) {
+	loginRequired(path, func(w http.ResponseWriter, r *http.Request, u User) {
+		if u.Email == "joon.saar@gmail.com" {
+			page(w)
+		}
+	})
+}
+
 func init() {
-	adminpage := func(path string, page func(http.ResponseWriter)) {
-		loginRequired(path, func(w http.ResponseWriter, r *http.Request, u User) {
-			if u.Email == "joon.saar@gmail.com" {
-				page(w)
-			}
-		})
-	}
 
 	adminpage("/progressdump", func(w http.ResponseWriter) {
 		text, err := json.Marshal(edistymiset)

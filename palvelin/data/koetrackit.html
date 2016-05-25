@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/static/ohje.css">
+</head>
+<body>
+{{range .}}
+<a href="/koe/{{.Name}}">{{.Name}}</a>
+	{{range $i, $e := .Statukset}}
+		<span style="color:{{if eq . 0}}gray{{else if eq . 1}}green{{else}}red{{end}}">{{$i}} </span>
+	{{end}}
+{{end}}
+</body>
