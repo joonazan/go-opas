@@ -73,7 +73,8 @@ func init() {
 		var reply, code string
 		if r.ParseForm(); len(r.Form) != 0 {
 			code = r.FormValue(codeField)
-			correct, reply := grade(code, syötteet, tehtävä.tulosteet)
+			var correct bool
+			correct, reply = grade(code, syötteet, tehtävä.tulosteet)
 			if correct {
 				edistyKokeessa(u, kokeenNimi)
 			}
